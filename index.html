@@ -1,96 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vectorphile</title>
+    <link rel="icon" href="C:\Users\saads\Downloads\Web Project\BG Free Logo.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background-color: #111827;
+        }
+
+        /* Page Load Animation */
+        .fade-in {
+            opacity: 0;
+            transform: scale(0.98);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Futuristic GitHub Hover Effect */
+        .github-icon {
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 5px #22c55e); /* Initial glow */
+        }
+
+        .github-icon:hover {
+            transform: scale(1.2) rotate(5deg); /* Slight rotation and scale */
+            filter: drop-shadow(0 0 15px #22c55e) brightness(1.3); /* Intense neon glow */
+            animation: neonPulse 1s infinite alternate; /* Neon pulsing animation */
+        }
+
+        @keyframes neonPulse {
+            0% { filter: drop-shadow(0 0 5px #22c55e); }
+            50% { filter: drop-shadow(0 0 20px #22c55e); }
+            100% { filter: drop-shadow(0 0 5px #22c55e); }
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col h-screen fade-in">
+
+    <!-- Header -->
+    <header class="bg-gray-800 text-white px-4 flex items-center border-b border-gray-700">
+        <img src="C:\Users\saads\Downloads\Web Project\BG Free Logo.png" alt="Vectorphile Logo" class="h-20 w-20"> 
+        <div>
+            <h1 class="text-2xl font-bold">Vectorphile</h1>
+            <p class="text-green-300 text-sm italic">𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐂𝐨𝐝𝐞, 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐎𝐩𝐞𝐧 𝐒𝐨𝐮𝐫𝐜𝐞</p>
+        </div>
+        <div class="flex items-center space-x-4 ml-auto">
+            <a href="https://github.com/vectorphile" target="_blank" class="flex items-center space-x-2 text-white hover:text-green-300">
+                <img src="https://img.icons8.com/?size=100&id=LoL4bFzqmAa0&format=png&color=000000" 
+                     alt="GitHub Logo" 
+                     class="w-10 h-10 github-icon">
+            </a>
+        </div>
+    </header>
+
+<!-- Main Content -->
+    <main class="flex-1 p-10 flex flex-col justify-center items-center">
+        <div class="text-center max-w-3xl">
+            <h2 class="text-4xl font-bold text-blue-400 mb-6">Welcome to Vectorphile</h2>
+            <p class="text-gray-300 text-lg leading-relaxed">
+                <span class="font-bold text-green-400">Vectorphile</span> is an open-source powerhouse at the forefront of 
+                <span class="text-yellow-400">Generative AI</span> and <span class="text-yellow-400">AI-driven software development</span>. 
+                We specialize in building and contributing to cutting-edge AI models, frameworks, and tools that empower developers, 
+                researchers, and enterprises to push the boundaries of <span class="text-yellow-400">machine learning, NLP, and multimodal AI</span>.
+            </p>
+
+            <p class="mt-4 text-gray-300 text-lg leading-relaxed">
+                Our mission is to democratize AI by fostering <span class="text-green-400">transparent, scalable, and community-driven</span> 
+                solutions that accelerate innovation. From <span class="text-yellow-400">LLMs and diffusion models</span> to 
+                <span class="text-yellow-400">vector databases and AI-powered automation</span>, Vectorphile is committed to shaping the 
+                future of open-source AI.
+            </p>
+
+            <p class="mt-4 text-gray-300 text-lg leading-relaxed">
+                At Vectorphile, we actively collaborate with the global AI community, ensuring ethical AI deployment and promoting 
+                <span class="text-green-400">reproducible research</span>. Whether it’s optimizing model inference, fine-tuning open-weight architectures, 
+                or integrating AI with real-world applications, we bridge the gap between <span class="text-yellow-400">cutting-edge research</span> 
+                and <span class="text-yellow-400">practical AI solutions</span>.
+            </p>
+
+            <div class="mt-8 p-6 bg-gray-800 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-semibold text-blue-300">Our Focus Areas:</h3>
+                <ul class="mt-3 text-gray-300 space-y-2">
+                    <li>✔ <span class="text-yellow-400">Open-Source LLMs & Generative AI Models</span></li>
+                    <li>✔ <span class="text-yellow-400">AI Frameworks & Tooling for Developers</span></li>
+                    <li>✔ <span class="text-yellow-400">Vector Databases & High-Performance Search</span></li>
+                    <li>✔ <span class="text-yellow-400">AI-Powered Automation & Agents</span></li>
+                    <li>✔ <span class="text-yellow-400">Responsible AI & Ethical Deployment</span></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 text-center py-2 border-t border-gray-700">
+        <p>© <span id="year"></span> Vectorphile. All rights reserved.</p>
+        <div class="mt-2 space-x-4">
+            <a href="https://github.com/vectorphile" class="text-blue-400 hover:text-blue-300">GitHub</a>
+            <a href="https://huggingface.co/Vectorphile" class="text-blue-400 hover:text-blue-300">Hugging Face</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
 </html>
