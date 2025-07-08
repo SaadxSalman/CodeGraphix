@@ -107,183 +107,33 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #6A6A6A;
         }
-
-        /* --- NEW HEADER STYLES --- */
-        .futuristic-header-v2 {
-            position: relative;
-            background: rgba(10, 10, 12, 0.8); /* Slightly darker, more solid base */
-            backdrop-filter: blur(15px); /* More pronounced blur */
-            border-bottom: 1px solid rgba(96, 165, 250, 0.1); /* Very subtle, thin border */
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* Deeper, softer shadow */
-            z-index: 10;
-            overflow: hidden; /* Important for containing pseudo-elements */
-        }
-
-        /* Ambient glowing lines pattern */
-        .futuristic-header-v2::before,
-        .futuristic-header-v2::after {
-            content: '';
-            position: absolute;
-            background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.2), transparent); /* Blue glow */
-            height: 2px;
-            width: 150%; /* Extend past edges */
-            animation: lineScan 15s infinite linear;
-            z-index: -1;
-        }
-
-        .futuristic-header-v2::before {
-            top: 20%;
-            left: -25%; /* Start off screen */
-            transform: rotate(5deg);
-        }
-
-        .futuristic-header-v2::after {
-            bottom: 20%;
-            right: -25%; /* Start off screen */
-            transform: rotate(-5deg);
-            animation-delay: 7.5s; /* Stagger animation */
-            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent); /* Purple glow */
-        }
-
-        @keyframes lineScan {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Pulsating text for Vectorphile title */
-        .vectorphile-title {
-            font-size: 3.2rem;
-            font-weight: 700;
-            letter-spacing: -0.05em; /* Tighter spacing */
-            position: relative;
-            animation: pulseText 2s infinite alternate ease-in-out;
-            text-shadow: 0 0 15px rgba(96, 165, 250, 0.4); /* Initial subtle blue glow */
-        }
-
-        @keyframes pulseText {
-            0% { text-shadow: 0 0 10px rgba(96, 165, 250, 0.4), 0 0 20px rgba(139, 92, 246, 0.2); }
-            100% { text-shadow: 0 0 20px rgba(96, 165, 250, 0.8), 0 0 30px rgba(139, 92, 246, 0.6); }
-        }
-
-        /* Tagline with subtle data flow effect */
-        .tagline-flow {
-            font-family: 'IBM Plex Mono', monospace;
-            color: #22C55E;
-            position: relative;
-            overflow: hidden;
-        }
-        .tagline-flow::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.2), transparent);
-            animation: flowEffect 5s infinite linear;
-        }
-
-        @keyframes flowEffect {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Navigation links with 'circuit board' highlight */
-        .nav-link-circuit {
-            position: relative;
-            padding: 8px 12px;
-            color: #C0C0C0; /* Softer white */
-            font-weight: 500;
-            transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
-            overflow: hidden;
-            border-radius: 4px;
-        }
-
-        .nav-link-circuit::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(96, 165, 250, 0.1), rgba(139, 92, 246, 0.1));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-            z-index: -1;
-        }
-
-        .nav-link-circuit:hover {
-            color: #60A5FA;
-            transform: translateY(-2px); /* Lift slightly on hover */
-        }
-
-        .nav-link-circuit:hover::before {
-            transform: scaleX(1);
-        }
-
-        /* GitHub icon refinement */
-        .github-icon-v2 {
-            width: 44px; /* Slightly larger */
-            height: 44px;
-            filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6)); /* More pronounced initial glow */
-            transition: all 0.3s ease;
-        }
-
-        .github-icon-v2:hover {
-            filter: drop-shadow(0 0 25px rgba(34, 197, 94, 1)) brightness(1.2) saturate(1.5);
-            transform: scale(1.1);
-        }
-
-        /* Logo pulse effect refined */
-        .logo-pulse-v2 {
-            animation: logoPulseV2 3s infinite ease-in-out alternate;
-        }
-
-        @keyframes logoPulseV2 {
-            0% {
-                filter: drop-shadow(0 0 5px rgba(34, 197, 94, 0.5));
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                filter: drop-shadow(0 0 15px rgba(34, 197, 94, 0.8));
-                transform: scale(1.03);
-                opacity: 0.95;
-            }
-            100% {
-                filter: drop-shadow(0 0 5px rgba(34, 197, 94, 0.5));
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
     </style>
 </head>
 <body class="bg-gray-900 text-white flex flex-col min-h-screen fade-in relative">
 
     <div class="hero-background"></div>
 
-    <header class="futuristic-header-v2 px-8 py-4 flex items-center justify-between">
-        <div class="flex items-center space-x-6">
-            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-18 w-18 logo-pulse-v2">
+    <header class="bg-gray-800 bg-opacity-70 backdrop-blur-md text-white px-8 py-4 flex items-center justify-between border-b border-gray-700 z-10 sticky top-0">
+        <div class="flex items-center space-x-4">
+            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-16 w-16">
             <div>
-                <h1 class="vectorphile-title text-gradient">Vectorphile</h1>
-                <p class="tagline-flow text-sm italic font-mono mt-1">𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐂𝐨𝐝𝐞, 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐎𝐩𝐞𝐧 𝐒𝐨𝐮𝐫𝐜𝐞</p>
+                <h1 class="text-3xl font-bold text-gradient">Vectorphile</h1>
+                <p class="text-green-400 text-sm italic font-mono mt-1">𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐂𝐨𝐝𝐞, 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐎𝐩𝐞𝐧 𝐒𝐨𝐮𝐫𝐜𝐞</p>
             </div>
         </div>
         <nav>
-            <ul class="flex space-x-10 text-lg font-semibold">
-                <li><a href="#about" class="nav-link-circuit">About</a></li>
-                <li><a href="#focus" class="nav-link-circuit">Focus Areas</a></li>
-                <li><a href="#community" class="nav-link-circuit">Community</a></li>
-                <li><a href="#contact" class="nav-link-circuit">Contact</a></li>
+            <ul class="flex space-x-8 text-lg font-semibold">
+                <li><a href="#about" class="hover:text-blue-400 transition duration-300">About</a></li>
+                <li><a href="#focus" class="hover:text-blue-400 transition duration-300">Focus Areas</a></li>
+                <li><a href="#community" class="hover:text-blue-400 transition duration-300">Community</a></li>
+                <li><a href="#contact" class="hover:text-blue-400 transition duration-300">Contact</a></li>
             </ul>
         </nav>
         <div class="flex items-center space-x-4">
-            <a href="https://github.com/vectorphile" target="_blank" class="flex items-center space-x-2 text-white">
+            <a href="https://github.com/vectorphile" target="_blank" class="flex items-center space-x-2 text-white hover:text-green-300 transform transition duration-300">
                 <img src="https://img.icons8.com/?size=100&id=LoL4bFzqmAa0&format=png&color=000000"
                      alt="GitHub Logo"
-                     class="github-icon-v2">
+                     class="w-10 h-10 github-icon">
             </a>
         </div>
     </header>
