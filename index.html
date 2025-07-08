@@ -107,26 +107,217 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #6A6A6A;
         }
+
+        /* --- START of NEW/MODIFIED styles for Futuristic Design --- */
+
+        /* Header Modifications */
+        .futuristic-header {
+            background: rgba(10, 10, 12, 0.6); /* Slightly more opaque, still dark */
+            backdrop-filter: blur(20px) saturate(180%); /* Stronger blur and saturation */
+            border-bottom: 1px solid rgba(75, 85, 99, 0.4); /* Softer border */
+            position: sticky;
+            top: 0;
+            z-index: 100; /* Ensure header stays on top */
+            animation: headerSlideDown 0.8s ease-out forwards;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+        }
+
+        @keyframes headerSlideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .futuristic-nav-link {
+            position: relative;
+            padding: 8px 0;
+            overflow: hidden;
+            transition: color 0.3s ease;
+        }
+
+        .futuristic-nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, #60A5FA, #8B5CF6);
+            transition: all 0.3s ease-out;
+            transform: translateX(-50%);
+        }
+
+        .futuristic-nav-link:hover::before {
+            width: 100%;
+        }
+
+        .futuristic-nav-link:hover {
+            color: #60A5FA; /* Highlight color on hover */
+        }
+
+        /* Hero Section Enhancements */
+        .futuristic-hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1c1c3a 100%); /* Deeper, more dynamic gradient */
+            padding: 10rem 2rem; /* More vertical padding for presence */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 80vh; /* Make hero section taller */
+        }
+
+        /* Particle/Grid Background Effect */
+        .hero-grid-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(45, 55, 72, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(45, 55, 72, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridPan 60s linear infinite;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        @keyframes gridPan {
+            from { background-position: 0 0; }
+            to { background-position: -400px -400px; }
+        }
+
+        .hero-glow-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 80%, rgba(96, 165, 250, 0.1), transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1), transparent 50%);
+            animation: glowPulse 8s infinite alternate ease-in-out;
+            z-index: 2;
+        }
+
+        @keyframes glowPulse {
+            0% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+            100% { opacity: 0.7; transform: scale(1); }
+        }
+
+        .futuristic-title {
+            font-size: 4.5rem; /* Larger title */
+            line-height: 1.1;
+            text-shadow: 0 0 15px rgba(96, 165, 250, 0.6), 0 0 30px rgba(139, 92, 246, 0.4); /* Enhanced glow */
+            animation: textFadeInUp 1.2s ease-out forwards;
+            animation-delay: 0.3s;
+            opacity: 0; /* Start hidden for animation */
+            position: relative; /* Needed for z-index */
+            z-index: 3;
+        }
+
+        @keyframes textFadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .futuristic-subtitle {
+            font-size: 1.75rem; /* Larger subtitle */
+            margin-top: 1.5rem;
+            max-width: 700px;
+            animation: textFadeInUp 1.2s ease-out forwards;
+            animation-delay: 0.6s;
+            opacity: 0; /* Start hidden for animation */
+            position: relative;
+            z-index: 3;
+        }
+
+        .cta-button-futuristic {
+            margin-top: 2.5rem;
+            background: linear-gradient(90deg, #60A5FA, #8B5CF6); /* Gradient button */
+            transition: all 0.4s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            z-index: 3;
+            padding: 1rem 3rem; /* Larger padding */
+            font-size: 1.25rem; /* Larger font */
+            border-radius: 9999px; /* Fully rounded */
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+        }
+
+        .cta-button-futuristic:hover {
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 0 35px rgba(96, 165, 250, 0.8), 0 0 60px rgba(139, 92, 246, 0.6);
+            filter: brightness(1.1);
+        }
+
+        .cta-button-futuristic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-30deg);
+            transition: all 0.7s ease;
+        }
+
+        .cta-button-futuristic:hover::before {
+            left: 100%;
+        }
+
+        /* Animation for the tagline */
+        .tagline-animate {
+            animation: glitchEffect 3s infinite linear alternate, fadeIn 1.2s ease-out forwards;
+            animation-delay: 0.8s;
+            opacity: 0;
+            display: inline-block; /* Essential for glitch effect positioning */
+            position: relative;
+        }
+
+        @keyframes glitchEffect {
+            0% { text-shadow: 0.05em 0 0 #4CAF50, -0.05em -0.025em 0 #FFEB3B, -0.025em 0.05em 0 #2196F3; }
+            14% { text-shadow: -0.05em -0.025em 0 #4CAF50, 0.025em 0.025em 0 #FFEB3B, -0.05em -0.05em 0 #2196F3; }
+            28% { text-shadow: 0.025em 0.05em 0 #4CAF50, -0.05em 0 0 #FFEB3B, 0.05em -0.025em 0 #2196F3; }
+            42% { text-shadow: -0.025em -0.05em 0 #4CAF50, 0.05em -0.025em 0 #FFEB3B, -0.05em 0.05em 0 #2196F3; }
+            56% { text-shadow: 0.05em 0.025em 0 #4CAF50, -0.05em 0.05em 0 #FFEB3B, 0.025em -0.05em 0 #2196F3; }
+            70% { text-shadow: -0.05em 0.05em 0 #4CAF50, 0.05em 0 0 #FFEB3B, -0.025em -0.025em 0 #2196F3; }
+            84% { text-shadow: 0.025em -0.025em 0 #4CAF50, -0.025em 0.05em 0 #FFEB3B, 0.05em 0.025em 0 #2196F3; }
+            100% { text-shadow: -0.025em 0 0 #4CAF50, 0.05em -0.05em 0 #FFEB3B, -0.05em 0.025em 0 #2196F3; }
+        }
+
+        /* Specific animation for the main hero heading */
+        @keyframes pulse-light {
+            0%, 100% { text-shadow: 0 0 15px rgba(96, 165, 250, 0.6), 0 0 30px rgba(139, 92, 246, 0.4); }
+            50% { text-shadow: 0 0 25px rgba(96, 165, 250, 0.8), 0 0 45px rgba(139, 92, 246, 0.6); }
+        }
+        .animate-pulse-light {
+            animation: pulse-light 3s infinite alternate ease-in-out;
+        }
+
+        /* --- END of NEW/MODIFIED styles for Futuristic Design --- */
+
     </style>
 </head>
 <body class="bg-gray-900 text-white flex flex-col min-h-screen fade-in relative">
 
-    <div class="hero-background"></div>
-
-    <header class="bg-gray-800 bg-opacity-70 backdrop-blur-md text-white px-8 py-4 flex items-center justify-between border-b border-gray-700 z-10 sticky top-0">
+    <header class="futuristic-header px-8 py-4 flex items-center justify-between z-10 sticky top-0">
         <div class="flex items-center space-x-4">
             <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-16 w-16">
             <div>
                 <h1 class="text-3xl font-bold text-gradient">Vectorphile</h1>
-                <p class="text-green-400 text-sm italic font-mono mt-1">𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐂𝐨𝐝𝐞, 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐎𝐩𝐞𝐧 𝐒𝐨𝐮𝐫𝐜𝐞</p>
+                <p class="text-green-400 text-sm italic font-mono mt-1 tagline-animate">𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐂𝐨𝐝𝐞, 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐎𝐩𝐞𝐧 𝐒𝐨𝐮𝐫𝐜𝐞</p>
             </div>
         </div>
         <nav>
             <ul class="flex space-x-8 text-lg font-semibold">
-                <li><a href="#about" class="hover:text-blue-400 transition duration-300">About</a></li>
-                <li><a href="#focus" class="hover:text-blue-400 transition duration-300">Focus Areas</a></li>
-                <li><a href="#community" class="hover:text-blue-400 transition duration-300">Community</a></li>
-                <li><a href="#contact" class="hover:text-blue-400 transition duration-300">Contact</a></li>
+                <li><a href="#about" class="futuristic-nav-link">About</a></li>
+                <li><a href="#focus" class="futuristic-nav-link">Focus Areas</a></li>
+                <li><a href="#community" class="futuristic-nav-link">Community</a></li>
+                <li><a href="#contact" class="futuristic-nav-link">Contact</a></li>
             </ul>
         </nav>
         <div class="flex items-center space-x-4">
@@ -138,100 +329,119 @@
         </div>
     </header>
 
-    <main class="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center relative z-0">
-        <section id="about" class="text-center max-w-4xl mb-20">
-            <h2 class="text-5xl font-extrabold text-gradient mb-8 leading-tight animate-pulse-light">Pioneering Open Source AI for a Smarter Future</h2>
-            <p class="text-gray-300 text-xl leading-relaxed mb-6">
-                <strong class="font-bold text-green-400">Vectorphile</strong> is an open-source powerhouse at the forefront of
-                <span class="text-yellow-400 font-semibold">Generative AI</span> and <span class="text-yellow-400 font-semibold">AI-driven software development</span>.
-                We specialize in building and contributing to cutting-edge AI models, frameworks, and tools that empower developers,
-                researchers, and enterprises to push the boundaries of <span class="text-yellow-400 font-semibold">machine learning, NLP, and multimodal AI</span>.
-            </p>
-
-            <p class="mt-4 text-gray-300 text-lg leading-relaxed mb-6">
-                Our mission is to democratize AI by fostering <strong class="text-green-400">transparent, scalable, and community-driven</strong>
-                solutions that accelerate innovation. From <span class="text-yellow-400 font-semibold">LLMs and diffusion models</span> to
-                <span class="text-yellow-400 font-semibold">vector databases and AI-powered automation</span>, Vectorphile is committed to shaping the
-                future of open-source AI.
-            </p>
-
-            <p class="mt-4 text-gray-300 text-lg leading-relaxed">
-                At Vectorphile, we actively collaborate with the global AI community, ensuring ethical AI deployment and promoting
-                <strong class="text-green-400">reproducible research</strong>. Whether it’s optimizing model inference, fine-tuning open-weight architectures,
-                or integrating AI with real-world applications, we bridge the gap between <span class="text-yellow-400 font-semibold">cutting-edge research</span>
-                and <span class="text-yellow-400 font-semibold">practical AI solutions</span>.
-            </p>
-            <a href="https://github.com/vectorphile" target="_blank" class="mt-10 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg">
-                Explore Our GitHub Projects <span class="ml-2">→</span>
-            </a>
-        </section>
-
-        <div class="w-full h-px bg-gray-700 my-16"></div>
-
-        <section id="focus" class="text-center max-w-5xl mb-20">
-            <h2 class="text-4xl font-bold text-gradient mb-12">Our Core Focus Areas</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
-                    <img src="https://img.icons8.com/ios-filled/100/60A5FA/robot.png" alt="LLM Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
-                    <h3 class="text-2xl font-semibold text-blue-300 mb-3">Open-Source LLMs & Generative AI</h3>
-                    <p class="text-gray-400">Driving innovation in large language models, diffusion models, and other generative AI architectures for diverse applications.</p>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
-                    <img src="https://img.icons8.com/ios-filled/100/8B5CF6/code.png" alt="Code Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
-                    <h3 class="text-2xl font-semibold text-purple-300 mb-3">AI Frameworks & Tooling</h3>
-                    <p class="text-gray-400">Building robust and developer-friendly frameworks and tools that streamline AI development and deployment.</p>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
-                    <img src="https://img.icons8.com/ios-filled/100/22C55E/database.png" alt="Database Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
-                    <h3 class="text-2xl font-semibold text-green-300 mb-3">Vector Databases & Search</h3>
-                    <p class="text-gray-400">Advancing high-performance vector databases and semantic search capabilities crucial for modern AI applications.</p>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
-                    <img src="https://img.icons8.com/ios-filled/100/FACC15/settings.png" alt="Automation Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
-                    <h3 class="text-2xl font-semibold text-yellow-300 mb-3">AI-Powered Automation & Agents</h3>
-                    <p class="text-gray-400">Developing intelligent agents and automation solutions to enhance productivity and solve complex problems.</p>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
-                    <img src="https://img.icons8.com/ios-filled/100/EF4444/ethics.png" alt="Ethics Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
-                    <h3 class="text-2xl font-semibold text-red-300 mb-3">Responsible AI & Ethics</h3>
-                    <p class="text-gray-400">Committed to the ethical deployment of AI, promoting fairness, transparency, and accountability in all our contributions.</p>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
-                    <img src="https://img.icons8.com/ios-filled/100/3B82F6/team-leader.png" alt="Community Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
-                    <h3 class="text-2xl font-semibold text-blue-300 mb-3">Community & Collaboration</h3>
-                    <p class="text-gray-400">Actively fostering a vibrant open-source community through contributions, mentorship, and shared knowledge.</p>
-                </div>
+    <main class="flex-1 relative z-0">
+        <section id="hero" class="futuristic-hero">
+            <div class="hero-grid-animation"></div>
+            <div class="hero-glow-overlay"></div>
+            <div class="relative z-30 text-center max-w-5xl px-4">
+                <h2 class="futuristic-title font-extrabold text-gradient mb-4 leading-tight animate-pulse-light">Pioneering Open Source AI for a Smarter Future</h2>
+                <p class="futuristic-subtitle text-gray-300 leading-relaxed mb-8">
+                    <strong class="font-bold text-green-400">Vectorphile</strong> is an open-source powerhouse at the forefront of
+                    <span class="text-yellow-400 font-semibold">Generative AI</span> and <span class="text-yellow-400 font-semibold">AI-driven software development</span>.
+                    We specialize in building and contributing to cutting-edge AI models, frameworks, and tools that empower developers,
+                    researchers, and enterprises to push the boundaries.
+                </p>
+                <a href="https://github.com/vectorphile" target="_blank" class="cta-button-futuristic">
+                    Explore Our GitHub Projects <span class="ml-2">→</span>
+                </a>
             </div>
         </section>
 
-        <div class="w-full h-px bg-gray-700 my-16"></div>
+        <div class="p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center">
+            <section id="about" class="text-center max-w-4xl mb-20">
+                <h2 class="text-5xl font-extrabold text-gradient mb-8 leading-tight animate-pulse-light">Pioneering Open Source AI for a Smarter Future</h2>
+                <p class="text-gray-300 text-xl leading-relaxed mb-6">
+                    <strong class="font-bold text-green-400">Vectorphile</strong> is an open-source powerhouse at the forefront of
+                    <span class="text-yellow-400 font-semibold">Generative AI</span> and <span class="text-yellow-400 font-semibold">AI-driven software development</span>.
+                    We specialize in building and contributing to cutting-edge AI models, frameworks, and tools that empower developers,
+                    researchers, and enterprises to push the boundaries of <span class="text-yellow-400 font-semibold">machine learning, NLP, and multimodal AI</span>.
+                </p>
 
-        <section id="community" class="text-center max-w-4xl mb-20">
-            <h2 class="text-4xl font-bold text-gradient mb-8">Join Our Community</h2>
-            <p class="text-gray-300 text-lg mb-6">
-                Vectorphile thrives on collaboration. We invite developers, researchers, and AI enthusiasts to contribute to our projects, engage in discussions, and help shape the future of open-source AI.
-            </p>
-            <div class="flex justify-center space-x-6">
-                <a href="https://github.com/vectorphile" target="_blank" class="flex items-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-md">
-                    <img src="https://img.icons8.com/ios-filled/30/ffffff/github.png" alt="GitHub" class="mr-2"> GitHub
+                <p class="mt-4 text-gray-300 text-lg leading-relaxed mb-6">
+                    Our mission is to democratize AI by fostering <strong class="text-green-400">transparent, scalable, and community-driven</strong>
+                    solutions that accelerate innovation. From <span class="text-yellow-400 font-semibold">LLMs and diffusion models</span> to
+                    <span class="text-yellow-400 font-semibold">vector databases and AI-powered automation</span>, Vectorphile is committed to shaping the
+                    future of open-source AI.
+                </p>
+
+                <p class="mt-4 text-gray-300 text-lg leading-relaxed">
+                    At Vectorphile, we actively collaborate with the global AI community, ensuring ethical AI deployment and promoting
+                    <strong class="text-green-400">reproducible research</strong>. Whether it’s optimizing model inference, fine-tuning open-weight architectures,
+                    or integrating AI with real-world applications, we bridge the gap between <span class="text-yellow-400 font-semibold">cutting-edge research</span>
+                    and <span class="text-yellow-400 font-semibold">practical AI solutions</span>.
+                </p>
+                <a href="https://github.com/vectorphile" target="_blank" class="mt-10 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                    Explore Our GitHub Projects <span class="ml-2">→</span>
                 </a>
-                <a href="https://huggingface.co/Vectorphile" target="_blank" class="flex items-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-md">
-                    <img src="https://img.icons8.com/fluency/30/hugging-face.png" alt="Hugging Face" class="mr-2"> Hugging Face
-                </a>
+            </section>
+
+            <div class="w-full h-px bg-gray-700 my-16"></div>
+
+            <section id="focus" class="text-center max-w-5xl mb-20">
+                <h2 class="text-4xl font-bold text-gradient mb-12">Our Core Focus Areas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
+                        <img src="https://img.icons8.com/ios-filled/100/60A5FA/robot.png" alt="LLM Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
+                        <h3 class="text-2xl font-semibold text-blue-300 mb-3">Open-Source LLMs & Generative AI</h3>
+                        <p class="text-gray-400">Driving innovation in large language models, diffusion models, and other generative AI architectures for diverse applications.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
+                        <img src="https://img.icons8.com/ios-filled/100/8B5CF6/code.png" alt="Code Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
+                        <h3 class="text-2xl font-semibold text-purple-300 mb-3">AI Frameworks & Tooling</h3>
+                        <p class="text-gray-400">Building robust and developer-friendly frameworks and tools that streamline AI development and deployment.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
+                        <img src="https://img.icons8.com/ios-filled/100/22C55E/database.png" alt="Database Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
+                        <h3 class="text-2xl font-semibold text-green-300 mb-3">Vector Databases & Search</h3>
+                        <p class="text-gray-400">Advancing high-performance vector databases and semantic search capabilities crucial for modern AI applications.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
+                        <img src="https://img.icons8.com/ios-filled/100/FACC15/settings.png" alt="Automation Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
+                        <h3 class="text-2xl font-semibold text-yellow-300 mb-3">AI-Powered Automation & Agents</h3>
+                        <p class="text-gray-400">Developing intelligent agents and automation solutions to enhance productivity and solve complex problems.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
+                        <img src="https://img.icons8.com/ios-filled/100/EF4444/ethics.png" alt="Ethics Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
+                        <h3 class="text-2xl font-semibold text-red-300 mb-3">Responsible AI & Ethics</h3>
+                        <p class="text-gray-400">Committed to the ethical deployment of AI, promoting fairness, transparency, and accountability in all our contributions.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 card-glow">
+                        <img src="https://img.icons8.com/ios-filled/100/3B82F6/team-leader.png" alt="Community Icon" class="w-16 h-16 mb-4 mx-auto filter brightness-125">
+                        <h3 class="text-2xl font-semibold text-blue-300 mb-3">Community & Collaboration</h3>
+                        <p class="text-gray-400">Actively fostering a vibrant open-source community through contributions, mentorship, and shared knowledge.</p>
+                    </div>
                 </div>
-        </section>
+            </section>
 
-        <div class="w-full h-px bg-gray-700 my-16"></div>
+            <div class="w-full h-px bg-gray-700 my-16"></div>
 
-        <section id="contact" class="text-center max-w-xl">
-            <h2 class="text-4xl font-bold text-gradient mb-8">Get In Touch</h2>
-            <p class="text-gray-300 text-lg mb-8">
-                Have questions, collaboration ideas, or just want to say hello? Reach out to us.
-            </p>
-            <a href="mailto:info@vectorphile.com" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg">
-                Contact Us
-            </a>
-        </section>
+            <section id="community" class="text-center max-w-4xl mb-20">
+                <h2 class="text-4xl font-bold text-gradient mb-8">Join Our Community</h2>
+                <p class="text-gray-300 text-lg mb-6">
+                    Vectorphile thrives on collaboration. We invite developers, researchers, and AI enthusiasts to contribute to our projects, engage in discussions, and help shape the future of open-source AI.
+                </p>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://github.com/vectorphile" target="_blank" class="flex items-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-md">
+                        <img src="https://img.icons8.com/ios-filled/30/ffffff/github.png" alt="GitHub" class="mr-2"> GitHub
+                    </a>
+                    <a href="https://huggingface.co/Vectorphile" target="_blank" class="flex items-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-md">
+                        <img src="https://img.icons8.com/fluency/30/hugging-face.png" alt="Hugging Face" class="mr-2"> Hugging Face
+                    </a>
+                    </div>
+            </section>
+
+            <div class="w-full h-px bg-gray-700 my-16"></div>
+
+            <section id="contact" class="text-center max-w-xl">
+                <h2 class="text-4xl font-bold text-gradient mb-8">Get In Touch</h2>
+                <p class="text-gray-300 text-lg mb-8">
+                    Have questions, collaboration ideas, or just want to say hello? Reach out to us.
+                </p>
+                <a href="mailto:info@vectorphile.com" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                    Contact Us
+                </a>
+            </section>
+        </div>
     </main>
 
     <footer class="bg-gray-800 bg-opacity-70 backdrop-blur-md text-gray-400 text-center py-6 border-t border-gray-700 mt-auto">
