@@ -121,14 +121,6 @@
         }
 
         /* Title Animation */
-        @keyframes titleTypewriter {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
         @keyframes titleFadeIn {
             from {
                 opacity: 0;
@@ -140,54 +132,104 @@
             }
         }
         .animate-title-in {
-            animation: titleFadeIn 0.8s ease-out 0.3s forwards; /* Start slightly after logo */
+            animation: titleFadeIn 0.8s ease-out forwards; /* No delay initially for faster load */
             opacity: 0; /* Hidden initially */
         }
-        
-        /* Navigation Link Futuristic Effect */
-        .nav-link-futuristic {
-            position: relative;
-            display: inline-block;
-            padding: 0.5rem 0;
-            overflow: hidden;
-            transition: color 0.3s ease, text-shadow 0.3s ease; /* Add text-shadow for glow */
+        /* Tagline animation delay */
+        .animate-tagline-in {
+            animation-delay: 0.2s; /* Tagline appears slightly after title */
         }
 
-        .nav-link-futuristic::before {
+        /* SUPER STYLISH Navigation Link Effect */
+        .nav-link-super-stylish {
+            position: relative;
+            display: inline-flex; /* Use flex to align icon and text if added later */
+            align-items: center;
+            padding: 0.6rem 1.2rem; /* More generous padding */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            overflow: hidden;
+            border: 1px solid transparent; /* Base for border animation */
+            border-radius: 6px;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            color: #C0C0C0; /* Softer initial color */
+            box-shadow: 0 0 0 transparent; /* Initial shadow */
+        }
+
+        .nav-link-super-stylish::before,
+        .nav-link-super-stylish::after {
+            content: '';
+            position: absolute;
+            background: linear-gradient(90deg, #60A5FA, #8B5CF6); /* Gradient for lines */
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Top border line */
+        .nav-link-super-stylish::before {
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+        }
+
+        /* Right border line */
+        .nav-link-super-stylish::after {
+            bottom: 0;
+            right: 0;
+            width: 2px;
+            height: 0%;
+        }
+
+        /* Left border line (dynamic) */
+        .nav-link-super-stylish span::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 0%;
+            background: linear-gradient(180deg, #60A5FA, #8B5CF6);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        /* Bottom border line (dynamic) */
+        .nav-link-super-stylish span::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
-            width: 100%;
+            right: 0; /* Changed to right for bottom line to match top */
+            width: 0%;
             height: 2px;
-            background: linear-gradient(90deg, #60A5FA, #8B5CF6);
-            transform: scaleX(0); /* Start as invisible line */
-            transform-origin: bottom left; /* Scale from left */
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Smoother transition */
+            background: linear-gradient(270deg, #60A5FA, #8B5CF6);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .nav-link-futuristic:hover::before {
-            transform: scaleX(1); /* Expand to full width */
+        /* Hover effects for lines and text */
+        .nav-link-super-stylish:hover::before { /* Top */
+            width: 100%;
+        }
+        .nav-link-super-stylish:hover::after { /* Right */
+            height: 100%;
+        }
+        .nav-link-super-stylish:hover span::before { /* Left */
+            height: 100%;
+        }
+        .nav-link-super-stylish:hover span::after { /* Bottom */
+            width: 100%;
         }
 
-        .nav-link-futuristic:hover {
-            color: #93C5FD; /* Lighter blue for hover */
-            text-shadow: 0 0 10px rgba(147, 197, 253, 0.6); /* Soft text glow on hover */
+        .nav-link-super-stylish:hover {
+            color: #E0E0E0; /* Keep text white for better contrast with glow */
+            background-color: rgba(96, 165, 250, 0.08); /* Very subtle background tint */
+            box-shadow: 0 0 25px rgba(96, 165, 250, 0.4), inset 0 0 10px rgba(139, 92, 246, 0.2); /* Outer and inner glow */
+            transform: translateY(-2px); /* Slight lift */
+            border-color: rgba(96, 165, 250, 0.6); /* Border becomes more visible */
         }
-
-        /* Mobile menu specific animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-in-down {
-            animation: fadeInDown 0.5s ease-out forwards;
+        
+        /* Ensure text is above pseudo-elements for correct z-indexing */
+        .nav-link-super-stylish span {
+            position: relative;
+            z-index: 1; /* Place text above lines */
         }
 
         /* Card hover effect */
@@ -226,17 +268,17 @@
             <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-14 w-14 md:h-16 md:w-16 filter drop-shadow-[0_0_12px_rgba(96,165,250,0.8)] animate-logo-entrance">
             <div>
                 <h1 class="text-3xl md:text-4xl font-extrabold font-orbitron text-gradient tracking-wide animate-title-in">VECTORPHILE</h1>
-                <p class="text-green-400 text-xs md:text-sm italic font-mono mt-0.5 animate-title-in" style="animation-delay: 0.5s;">
+                <p class="text-green-400 text-xs md:text-sm italic font-mono mt-0.5 animate-title-in animate-tagline-in">
                     <span class="pulsing-dot">•</span> 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐂𝐨𝐝𝐞, 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐎𝐩𝐞𝐧 𝐒𝐨𝐮𝐫𝐜𝐞
                 </p>
             </div>
         </div>
         <nav class="hidden md:block">
-            <ul class="flex space-x-8 text-lg font-semibold">
-                <li><a href="#about" class="nav-link-futuristic">About</a></li>
-                <li><a href="#focus" class="nav-link-futuristic">Focus Areas</a></li>
-                <li><a href="#community" class="nav-link-futuristic">Community</a></li>
-                <li><a href="#contact" class="nav-link-futuristic">Contact</a></li>
+            <ul class="flex space-x-4 text-lg font-semibold">
+                <li><a href="#about" class="nav-link-super-stylish"><span>About</span></a></li>
+                <li><a href="#focus" class="nav-link-super-stylish"><span>Focus Areas</span></a></li>
+                <li><a href="#community" class="nav-link-super-stylish"><span>Community</span></a></li>
+                <li><a href="#contact" class="nav-link-super-stylish"><span>Contact</span></a></li>
             </ul>
         </nav>
         <div class="flex items-center space-x-4">
