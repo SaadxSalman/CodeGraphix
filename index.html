@@ -6,7 +6,7 @@
     <title>Vectorphile - Open Source AI & LLM Research</title>
     <link rel="icon" href="BG Free Logo.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=IBM+Plex+Mono:wght@400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=IBM+Plex+Mono:400,600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Base styles */
         html, body {
@@ -82,21 +82,75 @@
             -webkit-text-fill-color: transparent;
         }
         
-        /* New Header Specific Styles */
+        /* Header Specific Styles */
         .header-bg-gradient {
-            background: linear-gradient(to right, #100C2A, #1A1A1A, #100C2A);
+            background: linear-gradient(to right, #0D0B1C, #1A1A1A, #0D0B1C); /* Deeper, more atmospheric gradient */
         }
 
         .header-border-glow {
-            box-shadow: 0 0 15px rgba(96, 165, 250, 0.3), inset 0 0 8px rgba(96, 165, 250, 0.2);
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.4), inset 0 0 10px rgba(96, 165, 250, 0.3); /* Stronger glow */
+            border-bottom: 1px solid rgba(96, 165, 250, 0.5); /* Subtle border matching glow */
         }
 
+        /* Pulsing dot for tagline */
+        @keyframes pulseDot {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        .pulsing-dot {
+            animation: pulseDot 1.5s infinite ease-in-out;
+            display: inline-block; /* Ensure it respects line-height */
+            margin-right: 0.25rem; /* Space before text */
+        }
+
+        /* Logo Animation */
+        @keyframes logoEntrance {
+            from {
+                opacity: 0;
+                transform: translateX(-50px) scale(0.8);
+                filter: blur(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        .animate-logo-entrance {
+            animation: logoEntrance 1.0s ease-out forwards;
+        }
+
+        /* Title Animation */
+        @keyframes titleTypewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        @keyframes titleFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-title-in {
+            animation: titleFadeIn 0.8s ease-out 0.3s forwards; /* Start slightly after logo */
+            opacity: 0; /* Hidden initially */
+        }
+        
+        /* Navigation Link Futuristic Effect */
         .nav-link-futuristic {
             position: relative;
             display: inline-block;
             padding: 0.5rem 0;
             overflow: hidden;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, text-shadow 0.3s ease; /* Add text-shadow for glow */
         }
 
         .nav-link-futuristic::before {
@@ -107,16 +161,33 @@
             width: 100%;
             height: 2px;
             background: linear-gradient(90deg, #60A5FA, #8B5CF6);
-            transform: translateX(-100%);
-            transition: transform 0.4s ease-out;
+            transform: scaleX(0); /* Start as invisible line */
+            transform-origin: bottom left; /* Scale from left */
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Smoother transition */
         }
 
         .nav-link-futuristic:hover::before {
-            transform: translateX(0);
+            transform: scaleX(1); /* Expand to full width */
         }
 
         .nav-link-futuristic:hover {
-            color: #60A5FA; /* Blue glow on hover */
+            color: #93C5FD; /* Lighter blue for hover */
+            text-shadow: 0 0 10px rgba(147, 197, 253, 0.6); /* Soft text glow on hover */
+        }
+
+        /* Mobile menu specific animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 0.5s ease-out forwards;
         }
 
         /* Card hover effect */
@@ -150,13 +221,13 @@
 
     <div class="hero-background"></div>
 
-    <header class="header-bg-gradient bg-opacity-80 backdrop-blur-md text-white px-6 py-3 md:px-10 md:py-4 flex items-center justify-between border-b border-gray-700 z-50 sticky top-0 header-border-glow">
+    <header class="header-bg-gradient bg-opacity-80 backdrop-blur-md text-white px-6 py-3 md:px-10 md:py-4 flex items-center justify-between z-50 sticky top-0 header-border-glow">
         <div class="flex items-center space-x-4">
-            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-14 w-14 md:h-16 md:w-16 filter drop-shadow-[0_0_8px_rgba(96,165,250,0.6)]">
+            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-14 w-14 md:h-16 md:w-16 filter drop-shadow-[0_0_12px_rgba(96,165,250,0.8)] animate-logo-entrance">
             <div>
-                <h1 class="text-3xl md:text-4xl font-extrabold font-orbitron text-gradient tracking-wide">VECTORPHILE</h1>
-                <p class="text-green-400 text-xs md:text-sm italic font-mono mt-0.5">
-                    <span class="animate-pulse"></span> 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐂𝐨𝐝𝐞, 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐎𝐩𝐞𝐧 𝐒𝐨𝐮𝐫𝐜𝐞
+                <h1 class="text-3xl md:text-4xl font-extrabold font-orbitron text-gradient tracking-wide animate-title-in">VECTORPHILE</h1>
+                <p class="text-green-400 text-xs md:text-sm italic font-mono mt-0.5 animate-title-in" style="animation-delay: 0.5s;">
+                    <span class="pulsing-dot">•</span> 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐂𝐨𝐝𝐞, 𝐓𝐨𝐠𝐞𝐭𝐡𝐞𝐫 𝐖𝐞 𝐎𝐩𝐞𝐧 𝐒𝐨𝐮𝐫𝐜𝐞
                 </p>
             </div>
         </div>
@@ -304,7 +375,7 @@
         document.getElementById("year").textContent = new Date().getFullYear();
 
         // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
+        document.querySelectorAll('nav a, .mobile-nav-link').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
