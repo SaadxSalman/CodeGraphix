@@ -243,7 +243,7 @@
             box-shadow: 0 0 25px rgba(96, 165, 250, 0.4); /* Subtle blue glow */
         }
 
-        /* Custom scrollbar (enhanced for ambient effect) */
+        /* --- Custom scrollbar with constant animation --- */
         ::-webkit-scrollbar {
             width: 10px; /* Slightly wider for better visibility */
         }
@@ -251,16 +251,30 @@
             background: #0A0A0C; /* Matches body background for seamless look */
             border-radius: 5px;
         }
-        /* This is the key for the color-changing thumb */
         ::-webkit-scrollbar-thumb {
-            background: var(--scrollbar-thumb-color, #60A5FA); /* Default blue, will be changed by JS */
+            /* Use a gradient and animate its background-position for a flowing effect */
+            background: linear-gradient(90deg, #60A5FA, #8B5CF6, #22C55E, #FACC15, #EF4444, #60A5FA);
+            background-size: 400% 100%; /* Make the gradient wider than the thumb */
             border-radius: 5px;
-            transition: background 0.5s ease-out; /* Smooth transition for color changes */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for definition */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: scrollbarFlow 10s linear infinite; /* Constant animation */
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--scrollbar-thumb-color-hover, #8B5CF6); /* Brighter on hover */
+            animation-play-state: paused; /* Pause animation on hover */
+            /* You can set a static hover color or a different animation here */
+            background: linear-gradient(90deg, #3B82F6, #7C3AED, #16A34A, #EAB308, #DC2626, #3B82F6);
+            background-size: 400% 100%;
             border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Keyframes for the flowing scrollbar effect */
+        @keyframes scrollbarFlow {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 0%; /* Moves the gradient across the thumb */
+            }
         }
 
         /* Custom animation for mobile menu */
@@ -479,44 +493,6 @@
                 mobileMenuOverlay.classList.remove('is-active');
             }
         });
-
-        // --- Scrollbar color-changing logic ---
-        const scrollbarColors = [
-            '#60A5FA', // Blue (matching text-gradient start)
-            '#8B5CF6', // Purple (matching text-gradient end)
-            '#22C55E', // Green (from 'Database' icon)
-            '#FACC15', // Yellow (from 'Automation' icon)
-            '#EF4444'  // Red (from 'Ethics' icon)
-        ];
-
-        // Define hover colors corresponding to the main colors
-        const scrollbarHoverColors = [
-            '#3B82F6', // Darker blue
-            '#7C3AED', // Darker purple
-            '#16A34A', // Darker green
-            '#EAB308', // Darker yellow
-            '#DC2626'  // Darker red
-        ];
-
-        function updateScrollbarColor() {
-            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight));
-            const colorIndex = Math.min(
-                Math.floor(scrollPercentage * scrollbarColors.length),
-                scrollbarColors.length - 1
-            );
-
-            const currentColor = scrollbarColors[colorIndex];
-            const currentHoverColor = scrollbarHoverColors[colorIndex];
-
-            document.documentElement.style.setProperty('--scrollbar-thumb-color', currentColor);
-            document.documentElement.style.setProperty('--scrollbar-thumb-color-hover', currentHoverColor);
-        }
-
-        // Listen for scroll events to update the scrollbar color
-        window.addEventListener('scroll', updateScrollbarColor);
-
-        // Initial call to set the scrollbar color on page load
-        document.addEventListener('DOMContentLoaded', updateScrollbarColor);
     </script>
 
 </body>
