@@ -243,19 +243,24 @@
             box-shadow: 0 0 25px rgba(96, 165, 250, 0.4); /* Subtle blue glow */
         }
 
-        /* Custom scrollbar (optional) */
+        /* Custom scrollbar (enhanced for ambient effect) */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px; /* Slightly wider for better visibility */
         }
         ::-webkit-scrollbar-track {
-            background: #1A1A1A;
+            background: #0A0A0C; /* Matches body background for seamless look */
+            border-radius: 5px;
         }
+        /* This is the key for the color-changing thumb */
         ::-webkit-scrollbar-thumb {
-            background: #4A4A4A;
-            border-radius: 4px;
+            background: var(--scrollbar-thumb-color, #60A5FA); /* Default blue, will be changed by JS */
+            border-radius: 5px;
+            transition: background 0.5s ease-out; /* Smooth transition for color changes */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for definition */
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #6A6A6A;
+            background: var(--scrollbar-thumb-color-hover, #8B5CF6); /* Brighter on hover */
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         /* Custom animation for mobile menu */
@@ -474,6 +479,44 @@
                 mobileMenuOverlay.classList.remove('is-active');
             }
         });
+
+        // --- Scrollbar color-changing logic ---
+        const scrollbarColors = [
+            '#60A5FA', // Blue (matching text-gradient start)
+            '#8B5CF6', // Purple (matching text-gradient end)
+            '#22C55E', // Green (from 'Database' icon)
+            '#FACC15', // Yellow (from 'Automation' icon)
+            '#EF4444'  // Red (from 'Ethics' icon)
+        ];
+
+        // Define hover colors corresponding to the main colors
+        const scrollbarHoverColors = [
+            '#3B82F6', // Darker blue
+            '#7C3AED', // Darker purple
+            '#16A34A', // Darker green
+            '#EAB308', // Darker yellow
+            '#DC2626'  // Darker red
+        ];
+
+        function updateScrollbarColor() {
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight));
+            const colorIndex = Math.min(
+                Math.floor(scrollPercentage * scrollbarColors.length),
+                scrollbarColors.length - 1
+            );
+
+            const currentColor = scrollbarColors[colorIndex];
+            const currentHoverColor = scrollbarHoverColors[colorIndex];
+
+            document.documentElement.style.setProperty('--scrollbar-thumb-color', currentColor);
+            document.documentElement.style.setProperty('--scrollbar-thumb-color-hover', currentHoverColor);
+        }
+
+        // Listen for scroll events to update the scrollbar color
+        window.addEventListener('scroll', updateScrollbarColor);
+
+        // Initial call to set the scrollbar color on page load
+        document.addEventListener('DOMContentLoaded', updateScrollbarColor);
     </script>
 
 </body>
