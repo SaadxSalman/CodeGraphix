@@ -64,7 +64,7 @@
             overflow: hidden;
             z-index: -1;
             background: radial-gradient(circle at top left, #1a202c, transparent 60%),
-                                    radial-gradient(circle at bottom right, #2d3748, transparent 60%);
+                                 radial-gradient(circle at bottom right, #2d3748, transparent 60%);
             background-blend-mode: overlay;
             animation: backgroundShift 20s infinite alternate ease-in-out;
         }
@@ -73,6 +73,15 @@
             0% { background-position: 0% 0%; }
             50% { background-position: 100% 100%; }
             100% { background-position: 0% 0%; }
+        }
+
+        /* Mobile-specific adjustments for hero-background */
+        @media (max-width: 767px) { /* Tailwind's 'md' breakpoint is 768px, so this covers smaller screens */
+            .hero-background {
+                background-size: cover; /* Ensures the background image covers the entire element */
+                background-repeat: no-repeat; /* Prevents the image from repeating */
+                background-position: center center; /* Centers the background image */
+            }
         }
 
         /* Text gradient for headings */
