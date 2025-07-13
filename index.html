@@ -64,7 +64,7 @@
             overflow: hidden;
             z-index: -1;
             background: radial-gradient(circle at top left, #1a202c, transparent 60%),
-                                    radial-gradient(circle at bottom right, #2d3748, transparent 60%);
+                                 radial-gradient(circle at bottom right, #2d3748, transparent 60%);
             background-blend-mode: overlay;
             animation: backgroundShift 20s infinite alternate ease-in-out;
         }
@@ -272,6 +272,19 @@
         .animate-fade-in-down {
             animation: fadeInDown 0.4s ease-out forwards;
         }
+
+        /* Mobile menu specific styles */
+        #mobile-menu-overlay {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(-100%);
+            pointer-events: none; /* Allows clicks through when hidden */
+        }
+        #mobile-menu-overlay.is-active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto; /* Enables clicks when active */
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white flex flex-col min-h-screen fade-in relative">
@@ -299,8 +312,8 @@
         <div class="flex items-center space-x-3 md:space-x-4">
             <a href="https://github.com/vectorphile" target="_blank" class="flex items-center space-x-2 text-white hover:text-green-300 transform transition duration-300">
                 <img src="https://img.icons8.com/?size=100&id=LoL4bFzqmAa0&format=png&color=000000"
-                     alt="GitHub Logo"
-                     class="w-8 h-8 md:w-10 md:h-10 github-icon">
+                    alt="GitHub Logo"
+                    class="w-8 h-8 md:w-10 md:h-10 github-icon">
             </a>
             <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -308,7 +321,7 @@
         </div>
     </header>
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-95 z-40 hidden flex-col items-center justify-center space-y-8 md:hidden animate-fade-in-down">
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-95 z-40 flex-col items-center justify-center space-y-8 md:hidden">
         <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
@@ -440,8 +453,8 @@
                 });
                 // Close mobile menu if open
                 const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-                if (!mobileMenuOverlay.classList.contains('hidden')) {
-                    mobileMenuOverlay.classList.add('hidden');
+                if (mobileMenuOverlay.classList.contains('is-active')) {
+                    mobileMenuOverlay.classList.remove('is-active');
                 }
             });
         });
@@ -460,17 +473,17 @@
         const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenuOverlay.classList.remove('hidden');
+            mobileMenuOverlay.classList.add('is-active');
         });
 
         closeMobileMenuButton.addEventListener('click', () => {
-            mobileMenuOverlay.classList.add('hidden');
+            mobileMenuOverlay.classList.remove('is-active');
         });
 
         // Close mobile menu when clicking outside (optional, but good UX)
         mobileMenuOverlay.addEventListener('click', (event) => {
             if (event.target === mobileMenuOverlay) {
-                mobileMenuOverlay.classList.add('hidden');
+                mobileMenuOverlay.classList.remove('is-active');
             }
         });
     </script>
