@@ -64,32 +64,15 @@
             overflow: hidden;
             z-index: -1;
             background: radial-gradient(circle at top left, #1a202c, transparent 60%),
-                                 radial-gradient(circle at bottom right, #2d3748, transparent 60%);
+                                    radial-gradient(circle at bottom right, #2d3748, transparent 60%);
             background-blend-mode: overlay;
             animation: backgroundShift 20s infinite alternate ease-in-out;
-            /* Default desktop values */
-            background-size: auto auto; /* or any specific desktop size if you had one */
-            background-position: 0% 0%, 100% 100%; /* Default positions for desktop */
         }
 
         @keyframes backgroundShift {
             0% { background-position: 0% 0%; }
             50% { background-position: 100% 100%; }
             100% { background-position: 0% 0%; }
-        }
-
-        /* Mobile-specific adjustments for hero-background */
-        @media (max-width: 767px) { /* Tailwind's 'md' breakpoint is 768px, so this covers smaller screens */
-            .hero-background {
-                /* To spread the effect more downward: */
-                /* Option 1: Adjust background-size to be taller */
-                background-size: 150% 180%; /* Example: Makes it 150% width, 180% height relative to the element */
-                /* Option 2: Adjust background-position to push the gradients down */
-                background-position: 0% 20%, 100% 100%; /* Example: Moves the top-left gradient down */
-                
-                /* You might need to experiment with these values to get the desired look. */
-                /* The background-blend-mode and animation will still apply. */
-            }
         }
 
         /* Text gradient for headings */
