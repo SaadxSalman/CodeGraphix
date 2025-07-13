@@ -243,7 +243,7 @@
             box-shadow: 0 0 25px rgba(96, 165, 250, 0.4); /* Subtle blue glow */
         }
 
-        /* --- Custom scrollbar with sparking/digits flowing animation --- */
+        /* --- Custom scrollbar with constant animation --- */
         ::-webkit-scrollbar {
             width: 10px; /* Slightly wider for better visibility */
         }
@@ -252,35 +252,23 @@
             border-radius: 5px;
         }
         ::-webkit-scrollbar-thumb {
-            /* Create sharp, distinct segments for a "digit" or "sparkle" look */
-            background: linear-gradient(
-                90deg,
-                #60A5FA 0%, #60A5FA 10%, /* Blue segment */
-                transparent 10%, transparent 20%, /* Gap */
-                #8B5CF6 20%, #8B5CF6 30%, /* Purple segment */
-                transparent 30%, transparent 40%, /* Gap */
-                #22C55E 40%, #22C55E 50%, /* Green segment */
-                transparent 50%, transparent 60%, /* Gap */
-                #FACC15 60%, #FACC15 70%, /* Yellow segment */
-                transparent 70%, transparent 80%, /* Gap */
-                #EF4444 80%, #EF4444 90%, /* Red segment */
-                transparent 90%, transparent 100% /* Gap to loop cleanly */
-            );
-            background-size: 500% 100%; /* Make the gradient much wider to fit segments + gaps */
+            /* Use a gradient and animate its background-position for a flowing effect */
+            background: linear-gradient(90deg, #60A5FA, #8B5CF6, #22C55E, #FACC15, #EF4444, #60A5FA);
+            background-size: 400% 100%; /* Make the gradient wider than the thumb */
             border-radius: 5px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: scrollbarSparkleFlow 10s linear infinite; /* Constant animation */
+            animation: scrollbarFlow 10s linear infinite; /* Constant animation */
         }
         ::-webkit-scrollbar-thumb:hover {
             animation-play-state: paused; /* Pause animation on hover */
             /* You can set a static hover color or a different animation here */
             background: linear-gradient(90deg, #3B82F6, #7C3AED, #16A34A, #EAB308, #DC2626, #3B82F6);
-            background-size: 400% 100%; /* Go back to smoother gradient on hover */
+            background-size: 400% 100%;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Keyframes for the sparking/digits flowing scrollbar effect */
-        @keyframes scrollbarSparkleFlow {
+        /* Keyframes for the flowing scrollbar effect */
+        @keyframes scrollbarFlow {
             0% {
                 background-position: 0% 0%;
             }
