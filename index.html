@@ -3,169 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vectorphile // Digital Nexus</title>
+    <title>Vectorphile // Open Source AI & LLM Research</title>
     <link rel="icon" href="BG Free Logo.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* ========================================================= */
-        /* CORE STYLES & FONT SETUP                                  */
-        /* ========================================================= */
+        /* BASE STYLES & TYPOGRAPHY */
         html, body {
             height: 100%;
             margin: 0;
             font-family: 'Space Grotesk', sans-serif;
-            background-color: #01040f; /* Even darker, almost black background */
-            color: #E2E8F0;
+            background-color: #030712; /* Very dark, minimalist background */
+            color: #E2E8F0; /* Off-white for readability */
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
-        /* ========================================================= */
-        /* ANIMATED BACKGROUND GRID & LIGHTNING                      */
-        /* ========================================================= */
-        .animated-background {
+        /* --- FUTURISTIC ANIMATED BACKGROUND GRID --- */
+        .animated-grid-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: 
-                radial-gradient(circle at 50% 120%, #00FFFF30, transparent 60%),
-                repeating-linear-gradient(45deg, transparent, transparent 1px, #00FFFF15 1px, #00FFFF15 2px),
-                repeating-linear-gradient(-45deg, transparent, transparent 1px, #00FFFF15 1px, #00FFFF15 2px),
-                #01040f;
+            background-image:
+                linear-gradient(to right, #1f293700 1px, #1f293700 1px),
+                linear-gradient(to bottom, #1f293700 1px, #1f293700 1px);
             background-size: 50px 50px;
-            animation: background-pulse 15s linear infinite;
+            animation: grid-glow 15s linear infinite;
+        }
+        @keyframes grid-glow {
+            0% { background-position: 0 0; }
+            100% { background-position: -500px -500px; }
         }
 
-        @keyframes background-pulse {
-            0% { background-size: 50px 50px; opacity: 1; }
-            50% { background-size: 55px 55px; opacity: 0.8; }
-            100% { background-size: 50px 50px; opacity: 1; }
-        }
-
-        /* ========================================================= */
-        /* HOLOGRAPHIC & GLITCH EFFECTS                              */
-        /* ========================================================= */
-        .holographic-gradient {
-            background: linear-gradient(90deg, #00FFFF, #8B5CF6, #FF00FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 5px rgba(0, 255, 255, 0.4), 0 0 10px rgba(139, 92, 246, 0.4);
-        }
-
-        .holographic-border {
-            border-image: linear-gradient(45deg, #00FFFF, #8B5CF6, #FF00FF) 1;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2), inset 0 0 5px rgba(139, 92, 246, 0.2);
+        /* --- GLASSMORPHISM EFFECT UTILITY CLASS --- */
+        .glassmorphism {
+            background-color: rgba(30, 41, 59, 0.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
-        .holographic-border:hover {
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.4), inset 0 0 10px rgba(139, 92, 246, 0.4);
-            transform: scale(1.02);
+
+        /* --- ACCENT COLORS & TEXT EFFECTS --- */
+        .accent-text {
+            color: #00FFFF; /* Vibrant neon cyan */
+            text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+        }
+        .text-gradient-main {
+            background: linear-gradient(90deg, #00FFFF, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .digital-glitch-hover {
-            transition: all 0.2s ease-in-out;
-        }
-        .digital-glitch-hover:hover {
-            animation: digital-glitch 0.4s infinite;
-        }
-
-        @keyframes digital-glitch {
-            0% { transform: translate(1px, 1px); filter: brightness(1.2); }
-            20% { transform: translate(-1px, -1px); filter: brightness(1); }
-            40% { transform: translate(1px, -1px); filter: brightness(1.2); }
-            60% { transform: translate(-1px, 1px); filter: brightness(1); }
-            80% { transform: translate(1px, 1px); filter: brightness(1.2); }
-            100% { transform: translate(-1px, -1px); filter: brightness(1); }
-        }
-        
-        /* ========================================================= */
-        /* CODE TERMINAL & CURSOR ANIMATION                          */
-        /* ========================================================= */
-        .terminal-container {
-            font-family: 'IBM Plex Mono', monospace;
-            background-color: rgba(17, 24, 39, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2), inset 0 0 10px rgba(0, 255, 255, 0.1);
-        }
-
-        .cursor-blink {
-            animation: blink-caret 1s step-end infinite;
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #00FFFF; }
-        }
-
-        /* ========================================================= */
-        /* COMPONENT ANIMATIONS & TRANSITIONS                        */
-        /* ========================================================= */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-down { animation: fadeInDown 0.8s ease-out forwards; }
-        
-        @keyframes fadeInSlow {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .animate-fade-in-slow { animation: fadeInSlow 1.5s ease-out forwards; }
-        
-        /* Optional: Add a subtle static glow to the logo */
-        .logo-glow {
-            filter: drop-shadow(0 0 8px rgba(0,255,255,0.8));
-        }
-
-        /* Data Trail Button Effect */
-        .btn-data-trail {
+        /* --- DYNAMIC BUTTON STYLES --- */
+        .btn-dynamic {
             position: relative;
+            z-index: 1;
             overflow: hidden;
         }
-        .btn-data-trail::before {
+        .btn-dynamic::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(0, 255, 255, 0.1);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s ease, height 0.4s ease;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #00FFFF, #8B5CF6);
+            transition: transform 0.4s ease-out;
             z-index: -1;
         }
-        .btn-data-trail:hover::before {
-            width: 250%;
-            height: 250%;
+        .btn-dynamic:hover::before {
+            transform: translateX(100%);
         }
 
+        /* --- CUSTOM SCROLLBAR (Same as original, but updated) --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #00FFFF, #8B5CF6);
+            border-radius: 4px;
+        }
+
+        /* --- COMPONENT-SPECIFIC ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0; /* Hidden initially */
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
     
-    <div class="animated-background"></div>
+    <div class="animated-grid-background"></div>
 
-    <header class="bg-gray-900 bg-opacity-40 backdrop-blur-xl text-white px-4 py-3 md:px-10 md:py-4 flex items-center justify-between z-50 sticky top-0 border-b border-gray-800 animate-fade-in-down">
-        <div class="flex items-center space-x-3 md:space-x-4">
-            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-10 w-10 md:h-12 md:w-12 logo-glow">
+    <header class="glassmorphism bg-opacity-20 backdrop-blur-md text-white px-4 py-3 md:px-10 md:py-4 flex items-center justify-between z-50 sticky top-0 border-b border-gray-700">
+        <div class="flex items-center space-x-2 md:space-x-4">
+            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-10 w-10 md:h-12 md:w-12 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]">
             <div>
-                <h1 class="text-2xl md:text-3xl font-bold font-['IBM_Plex_Mono'] tracking-wide text-white">VECTORPHILE</h1>
-                <p class="text-xs md:text-sm font-['IBM_Plex_Mono'] text-gray-400 mt-0.5">// DIGITAL NEXUS</p>
+                <h1 class="text-2xl md:text-3xl font-bold font-['IBM_Plex_Mono'] tracking-wide">VECTORPHILE</h1>
+                <p class="text-xs md:text-sm font-['IBM_Plex_Mono'] text-gray-400 mt-0.5">
+                    // Open Source AI & LLM Research
+                </p>
             </div>
         </div>
         
         <nav class="hidden md:flex ml-auto items-center space-x-6">
-            <a href="#about" class="text-white hover:text-[#00FFFF] digital-glitch-hover transition duration-200 font-medium">About</a>
-            <a href="#focus" class="text-white hover:text-[#00FFFF] digital-glitch-hover transition duration-200 font-medium">Focus Areas</a>
-            <a href="#community" class="text-white hover:text-[#00FFFF] digital-glitch-hover transition duration-200 font-medium">Community</a>
+            <a href="#about" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
+                About
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+            </a>
+            <a href="#focus" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
+                Focus
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+            </a>
+            <a href="#community" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
+                Community
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+            </a>
+            <a href="https://github.com/vectorphile" target="_blank" class="glassmorphism border border-gray-700 hover:border-[#00FFFF] text-white px-4 py-2 rounded-lg text-sm transition duration-300">
+                GitHub →
+            </a>
         </nav>
         
         <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
@@ -173,98 +143,93 @@
         </button>
     </header>
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-gray-950 bg-opacity-95 z-40 flex-col items-center justify-center space-y-8 md:hidden hidden">
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#030712] bg-opacity-95 z-40 flex-col items-center justify-center space-y-8 md:hidden hidden">
         <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <nav class="flex flex-col items-center space-y-6 text-3xl font-bold">
-            <a href="#about" class="mobile-nav-link text-white hover:text-[#00FFFF] digital-glitch-hover transition duration-300">About</a>
-            <a href="#focus" class="mobile-nav-link text-white hover:text-[#00FFFF] digital-glitch-hover transition duration-300">Focus Areas</a>
-            <a href="#community" class="mobile-nav-link text-white hover:text-[#00FFFF] digital-glitch-hover transition duration-300">Community</a>
+            <a href="#about" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">About</a>
+            <a href="#focus" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">Focus Areas</a>
+            <a href="#community" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">Community</a>
         </nav>
     </div>
 
     <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-10 max-w-7xl mx-auto">
         
-        <section id="hero" class="text-center w-full max-w-5xl py-20 md:py-32 animate-fade-in-slow">
-            <div class="terminal-container p-6 md:p-10">
-                <div class="flex items-center text-sm font-['IBM_Plex_Mono'] text-gray-500 mb-4">
-                    <span class="w-3 h-3 rounded-full bg-red-500 mr-2"></span>
-                    <span class="w-3 h-3 rounded-full bg-yellow-400 mr-2"></span>
-                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
-                    <span class="ml-auto text-gray-400">vectorphile_main.sh</span>
-                </div>
-                <div class="text-left">
-                    <pre class="text-sm md:text-base text-green-300 font-['IBM_Plex_Mono']">
-                        <span class="text-[#00FFFF]">&gt; Initializing protocol.version_0.9.1...</span><br>
-                        <span class="text-green-400">
-                        // Status:
-                        // [✓] Core modules loaded.
-                        // [✓] AI models compiled.
-                        // [✓] Open-source framework is ready.
-                        // [✓] Data stream secure.
-                        </span>
-                        <br>
-                        <span class="text-[#FF00FF]">Vectorphile.AI_Nexus &gt;</span> <span class="text-white">Seeking collaborative intelligence for <span class="holographic-gradient">generative AI</span> research...</span><span class="border-l-2 border-l-[#00FFFF] cursor-blink"> </span>
-                    </pre>
-                </div>
-            </div>
-            <a href="https://github.com/vectorphile" target="_blank" class="mt-12 inline-block bg-transparent holographic-border border-2 px-8 py-3 rounded-md text-white font-bold text-sm md:text-base transition duration-300 btn-data-trail hover:text-[#01040f] hover:font-bold">
-                Explore The Source Code
+        <section id="about" class="text-center max-w-4xl py-20 md:py-32 animate-fade-in-up" style="animation-delay: 0.2s;">
+            <p class="text-sm font-['IBM_Plex_Mono'] text-gray-400 uppercase tracking-widest mb-4">Pioneering the Future</p>
+            <h2 class="text-5xl md:text-7xl font-bold leading-tight text-gradient-main">
+                Democratizing Intelligence, One Algorithm at a Time.
+            </h2>
+            <p class="text-gray-300 text-base md:text-lg leading-relaxed mt-8">
+                <strong class="font-bold text-accent-text">Vectorphile</strong> is an open-source collective at the forefront of <strong class="text-[#00FFFF]">Generative AI</strong> and <strong class="text-[#00FFFF]">AI-driven software development</strong>. We are a community dedicated to building transparent, scalable, and impactful solutions that push the boundaries of machine learning, NLP, and multimodal AI.
+            </p>
+            <a href="https://github.com/vectorphile" target="_blank" class="mt-8 inline-flex items-center space-x-2 glassmorphism border-gray-700 hover:border-[#00FFFF] px-6 py-3 rounded-lg text-sm md:text-base font-semibold transition duration-300">
+                <img src="https://img.icons8.com/ios-filled/30/ffffff/github.png" alt="GitHub" class="w-5 h-5">
+                <span>Explore Our GitHub Projects</span>
             </a>
         </section>
 
         <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
-        <section id="focus" class="w-full text-center py-16 md:py-24 animate-fade-in-slow">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">System Logs: Focus Areas</h2>
+        <section id="focus" class="w-full text-center py-16 md:py-24 animate-fade-in-up" style="animation-delay: 0.4s;">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">Our Core Focus Areas</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-                <div class="bg-gray-900 bg-opacity-40 backdrop-blur-lg rounded-xl p-6 md:p-8 holographic-border">
-                    <h3 class="text-xl md:text-2xl font-semibold text-[#00FFFF] mb-2">LLM Protocols</h3>
-                    <p class="text-gray-400 text-sm md:text-base font-['IBM_Plex_Mono']">// 0x01: Open Model Development</p>
-                    <p class="text-gray-400 text-sm md:text-base font-['IBM_Plex_Mono']">// 0x02: Algorithmic Transparency</p>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Open-Source LLMs</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Developing and fine-tuning open-source models that are accessible and transparent to the global research community.</p>
                 </div>
-                <div class="bg-gray-900 bg-opacity-40 backdrop-blur-lg rounded-xl p-6 md:p-8 holographic-border">
-                    <h3 class="text-xl md:text-2xl font-semibold text-[#8B5CF6] mb-2">Framework & Tooling</h3>
-                    <p class="text-gray-400 text-sm md:text-base font-['IBM_Plex_Mono']">// 0x03: Developer API Integration</p>
-                    <p class="text-gray-400 text-sm md:text-base font-['IBM_Plex_Mono']">// 0x04: Scalability Optimization</p>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI Tooling & Frameworks</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Building the next generation of robust and intuitive tools to streamline AI development and deployment.</p>
                 </div>
-                <div class="bg-gray-900 bg-opacity-40 backdrop-blur-lg rounded-xl p-6 md:p-8 holographic-border">
-                    <h3 class="text-xl md:text-2xl font-semibold text-[#FF00FF] mb-2">Vector & Semantic Search</h3>
-                    <p class="text-gray-400 text-sm md:text-base font-['IBM_Plex_Mono']">// 0x05: High-Dimensional Indexing</p>
-                    <p class="text-gray-400 text-sm md:text-base font-['IBM_Plex_Mono']">// 0x06: Real-time Querying</p>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Vector Databases</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Advancing high-performance vector databases crucial for efficient retrieval-augmented generation (RAG) systems.</p>
+                </div>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI-Powered Agents</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Designing autonomous agents that can solve complex problems and automate workflows with precision.</p>
+                </div>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Data & Ethics</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Committed to ethical AI practices, promoting transparency, fairness, and accountability in all our work.</p>
+                </div>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Collaboration</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Fostering a vibrant community through mentorship, shared knowledge, and collaborative problem-solving.</p>
                 </div>
             </div>
         </section>
 
         <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
-        <section id="community" class="text-center max-w-4xl py-16 md:py-24 animate-fade-in-slow">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Join the Collaborative Matrix</h2>
+        <section id="community" class="text-center max-w-4xl py-16 md:py-24 animate-fade-in-up" style="animation-delay: 0.6s;">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Join Our Community</h2>
             <p class="text-gray-300 text-base md:text-lg mb-8">
-                Your input is a critical data point. Contribute to our projects on GitHub or join the conversation on Hugging Face to help us compute the future of open-source AI.
+                Vectorphile thrives on collaboration. We invite developers, researchers, and AI enthusiasts to contribute to our projects and help shape the future of open-source AI.
             </p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="https://github.com/vectorphile" target="_blank" class="btn-data-trail bg-gray-800 hover:bg-transparent holographic-border border-2 px-6 py-3 rounded-lg text-white font-semibold transition duration-300">
-                    <span class="relative z-10">GitHub Repository →</span>
+                <a href="https://github.com/vectorphile" target="_blank" class="glassmorphism border-gray-700 hover:border-[#00FFFF] text-white px-6 py-3 rounded-lg transition duration-300">
+                    GitHub →
                 </a>
-                <a href="https://huggingface.co/Vectorphile" target="_blank" class="btn-data-trail bg-gray-800 hover:bg-transparent holographic-border border-2 px-6 py-3 rounded-lg text-white font-semibold transition duration-300">
-                    <span class="relative z-10">Hugging Face Hub →</span>
+                <a href="https://huggingface.co/Vectorphile" target="_blank" class="glassmorphism border-gray-700 hover:border-[#00FFFF] text-white px-6 py-3 rounded-lg transition duration-300">
+                    Hugging Face →
                 </a>
             </div>
         </section>
-        
+
         <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
     </main>
 
-    <footer class="bg-gray-900 bg-opacity-40 backdrop-blur-xl text-gray-400 text-center py-6 border-t border-gray-800 px-4 mt-auto animate-fade-in-slow">
-        <p class="text-sm font-['IBM_Plex_Mono']">© <span id="year"></span> VECTORPHILE.DATA_PROTOCOL</p>
+    <footer class="glassmorphism text-gray-400 text-center py-6 border-t border-gray-700 px-4 mt-auto">
+        <p class="text-sm">© <span id="year"></span> Vectorphile. All rights reserved.</p>
         <div class="mt-3 space-x-4 text-xs md:text-sm flex flex-wrap justify-center">
-            <a href="https://github.com/vectorphile" class="text-[#00FFFF] hover:text-[#FF00FF] transition duration-200">GitHub</a>
-            <a href="https://huggingface.co/Vectorphile" class="text-[#00FFFF] hover:text-[#FF00FF] transition duration-200">Hugging Face</a>
-            <a href="#" class="text-[#00FFFF] hover:text-[#FF00FF] transition duration-200">Privacy Policy</a>
-            <a href="#" class="text-[#00FFFF] hover:text-[#FF00FF] transition duration-200">Terms of Service</a>
+            <a href="https://github.com/vectorphile" class="text-[#00FFFF] hover:opacity-80 transition duration-200">GitHub</a>
+            <a href="https://huggingface.co/Vectorphile" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Hugging Face</a>
+            <a href="#" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Privacy Policy</a>
+            <a href="#" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Terms of Service</a>
         </div>
     </footer>
 
@@ -278,14 +243,14 @@
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenuOverlay.classList.remove('hidden');
-            setTimeout(() => mobileMenuOverlay.style.opacity = '1', 10);
+            setTimeout(() => mobileMenuOverlay.classList.add('animate-fade-in-down'), 10);
         });
 
         closeMobileMenuButton.addEventListener('click', () => {
-            mobileMenuOverlay.style.opacity = '0';
+            mobileMenuOverlay.classList.remove('animate-fade-in-down');
             setTimeout(() => mobileMenuOverlay.classList.add('hidden'), 300);
         });
-        
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('nav a, .mobile-nav-link').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -295,42 +260,27 @@
                     document.querySelector(href).scrollIntoView({
                         behavior: 'smooth'
                     });
-                    if (window.innerWidth < 768) {
-                        mobileMenuOverlay.style.opacity = '0';
+                    if (mobileMenuOverlay.classList.contains('animate-fade-in-down')) {
+                        mobileMenuOverlay.classList.remove('animate-fade-in-down');
                         setTimeout(() => mobileMenuOverlay.classList.add('hidden'), 300);
                     }
                 }
             });
         });
 
-        // Add class for staggered fade-in animations on scroll
+        // Animate elements on scroll using Intersection Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.animationPlayState = 'running';
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = 0;
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-            observer.observe(section);
         });
 
-        // Optional: Integrate a subtle audio track or sound effects for full immersion
-        /*
-        document.addEventListener('DOMContentLoaded', () => {
-            const audio = new Audio('path/to/sci-fi-ambient-loop.mp3');
-            audio.loop = true;
-            document.body.addEventListener('click', () => {
-                audio.play().catch(e => console.error("Audio playback failed:", e));
-            }, { once: true });
+        document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+            observer.observe(el);
         });
-        */
     </script>
 
 </body>
