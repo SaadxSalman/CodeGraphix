@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,64 +8,95 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* BASE STYLES & TYPOGRAPHY */
+        /* CORE STYLES & FONT DEFINITIONS */
         html, body {
             height: 100%;
             margin: 0;
             font-family: 'Space Grotesk', sans-serif;
-            background-color: #030712; /* Very dark, minimalist background */
-            color: #E2E8F0; /* Off-white for readability */
+            background-color: #030712;
+            color: #E2E8F0;
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
-        /* --- FUTURISTIC ANIMATED BACKGROUND GRID --- */
+        /* --- NEXT-GEN ANIMATED BACKGROUND GRID & SHADOWS --- */
         .animated-grid-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -2; /* Placed below the glow effects */
             background-image:
-                linear-gradient(to right, #1f293700 1px, #1f293700 1px),
-                linear-gradient(to bottom, #1f293700 1px, #1f293700 1px);
-            background-size: 50px 50px;
-            animation: grid-glow 15s linear infinite;
-        }
-        @keyframes grid-glow {
-            0% { background-position: 0 0; }
-            100% { background-position: -500px -500px; }
+                linear-gradient(to right, #1f2937 1px, transparent 1px),
+                linear-gradient(to bottom, #1f2937 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: grid-movement 60s linear infinite;
         }
 
-        /* --- GLASSMORPHISM EFFECT UTILITY CLASS --- */
+        @keyframes grid-movement {
+            0% { background-position: 0 0; }
+            100% { background-position: -600px -600px; }
+        }
+
+        .background-glow-1, .background-glow-2 {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px); /* Increased blur for a more ethereal glow */
+            opacity: 0.3;
+            z-index: -1; /* Above the grid but below the content */
+            animation: pulse-glow 10s ease-in-out infinite alternate;
+        }
+        .background-glow-1 { top: 10%; left: 10%; width: 500px; height: 500px; background-color: #00FFFF; }
+        .background-glow-2 { bottom: 20%; right: 15%; width: 400px; height: 400px; background-color: #8B5CF6; animation-delay: 2s; }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(1); opacity: 0.2; }
+            100% { transform: scale(1.1); opacity: 0.4; }
+        }
+
+        /* --- HOLOGRAPHIC & GLASSMORPHISM EFFECTS --- */
         .glassmorphism {
             background-color: rgba(30, 41, 59, 0.2);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(25px) brightness(1.2); /* Enhanced blur and brightness */
+            -webkit-backdrop-filter: blur(25px) brightness(1.2);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly more visible border */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 255, 255, 0.1); /* Subtle neon inner glow */
+            transition: all 0.4s ease;
         }
-
+        
+        .glassmorphism:hover {
+            border-color: rgba(0, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 255, 0.4);
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+        
         /* --- ACCENT COLORS & TEXT EFFECTS --- */
         .accent-text {
-            color: #00FFFF; /* Vibrant neon cyan */
-            text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+            color: #00FFFF;
+            text-shadow: 0 0 8px #00FFFF, 0 0 15px #00FFFF;
         }
         .text-gradient-main {
-            background: linear-gradient(90deg, #00FFFF, #8B5CF6);
+            background: linear-gradient(45deg, #00FFFF, #8B5CF6, #00FFFF);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: gradient-flow 5s ease-in-out infinite;
         }
-
-        /* --- DYNAMIC BUTTON STYLES --- */
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* --- DYNAMIC BUTTONS & INTERACTIONS --- */
         .btn-dynamic {
             position: relative;
             z-index: 1;
             overflow: hidden;
+            transition: all 0.4s ease;
         }
         .btn-dynamic::before {
             content: '';
@@ -74,44 +105,51 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, #00FFFF, #8B5CF6);
+            background: linear-gradient(to right, rgba(0, 255, 255, 0.4), rgba(139, 92, 246, 0.4));
             transition: transform 0.4s ease-out;
             z-index: -1;
         }
         .btn-dynamic:hover::before {
             transform: translateX(100%);
         }
+        .btn-dynamic:active {
+            transform: scale(0.98);
+        }
 
-        /* --- CUSTOM SCROLLBAR (Same as original, but updated) --- */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #030712;
-        }
+        /* --- CUSTOM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0e121a; }
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, #00FFFF, #8B5CF6);
             border-radius: 4px;
         }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #00FFFF, #8B5CF6, #00FFFF); }
 
         /* --- COMPONENT-SPECIFIC ANIMATIONS --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0; /* Hidden initially */
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        /* --- MOBILE MENU ANIMATIONS --- */
+        @keyframes slideInFromTop { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        @keyframes slideOutToTop { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+        .slide-in-top { animation: slideInFromTop 0.5s ease-out forwards; }
+        .slide-out-top { animation: slideOutToTop 0.5s ease-in forwards; }
+
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
     
     <div class="animated-grid-background"></div>
+    <div class="background-glow-1"></div>
+    <div class="background-glow-2"></div>
 
-    <header class="glassmorphism bg-opacity-20 backdrop-blur-md text-white px-4 py-3 md:px-10 md:py-4 flex items-center justify-between z-50 sticky top-0 border-b border-gray-700">
+    <header class="glassmorphism bg-opacity-20 text-white px-4 py-3 md:px-10 md:py-4 flex items-center justify-between z-50 sticky top-0 border-b border-gray-700">
         <div class="flex items-center space-x-2 md:space-x-4">
-            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-10 w-10 md:h-12 md:w-12 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]">
+            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-10 w-10 md:h-12 md:w-12 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] animate-pulse">
             <div>
                 <h1 class="text-2xl md:text-3xl font-bold font-['IBM_Plex_Mono'] tracking-wide">VECTORPHILE</h1>
                 <p class="text-xs md:text-sm font-['IBM_Plex_Mono'] text-gray-400 mt-0.5">
@@ -122,32 +160,33 @@
         
         <nav class="hidden md:flex ml-auto items-center space-x-6">
             <a href="#about" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
-                About
+                <span class="z-10">About</span>
                 <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
             <a href="#focus" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
-                Focus
+                <span class="z-10">Focus</span>
                 <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
             <a href="#community" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
-                Community
+                <span class="z-10">Community</span>
                 <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
-            <a href="https://github.com/vectorphile" target="_blank" class="glassmorphism border border-gray-700 hover:border-[#00FFFF] text-white px-4 py-2 rounded-lg text-sm transition duration-300">
-                GitHub →
+            <a href="https://github.com/vectorphile" target="_blank" class="glassmorphism border border-gray-700 hover:border-[#00FFFF] text-white px-4 py-2 rounded-lg text-sm transition duration-300 btn-dynamic">
+                <img src="https://img.icons8.com/ios-filled/30/ffffff/github.png" alt="GitHub" class="inline-block mr-2 w-4 h-4">
+                <span>GitHub →</span>
             </a>
         </nav>
         
         <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
         </button>
     </header>
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#030712] bg-opacity-95 z-40 flex-col items-center justify-center space-y-8 md:hidden hidden">
         <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        <nav class="flex flex-col items-center space-y-6 text-3xl font-bold">
+        <nav class="flex flex-col items-center space-y-8 text-3xl font-bold">
             <a href="#about" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">About</a>
             <a href="#focus" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">Focus Areas</a>
             <a href="#community" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">Community</a>
@@ -156,7 +195,7 @@
 
     <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-10 max-w-7xl mx-auto">
         
-        <section id="about" class="text-center max-w-4xl py-20 md:py-32 animate-fade-in-up" style="animation-delay: 0.2s;">
+        <section id="about" class="text-center max-w-5xl py-20 md:py-32 animate-fade-in-up delay-1">
             <p class="text-sm font-['IBM_Plex_Mono'] text-gray-400 uppercase tracking-widest mb-4">Pioneering the Future</p>
             <h2 class="text-5xl md:text-7xl font-bold leading-tight text-gradient-main">
                 Democratizing Intelligence, One Algorithm at a Time.
@@ -164,7 +203,7 @@
             <p class="text-gray-300 text-base md:text-lg leading-relaxed mt-8">
                 <strong class="font-bold text-accent-text">Vectorphile</strong> is an open-source collective at the forefront of <strong class="text-[#00FFFF]">Generative AI</strong> and <strong class="text-[#00FFFF]">AI-driven software development</strong>. We are a community dedicated to building transparent, scalable, and impactful solutions that push the boundaries of machine learning, NLP, and multimodal AI.
             </p>
-            <a href="https://github.com/vectorphile" target="_blank" class="mt-8 inline-flex items-center space-x-2 glassmorphism border-gray-700 hover:border-[#00FFFF] px-6 py-3 rounded-lg text-sm md:text-base font-semibold transition duration-300">
+            <a href="https://github.com/vectorphile" target="_blank" class="mt-8 inline-flex items-center space-x-2 glassmorphism border-gray-700 hover:border-[#00FFFF] px-6 py-3 rounded-lg text-sm md:text-base font-semibold transition duration-300 btn-dynamic">
                 <img src="https://img.icons8.com/ios-filled/30/ffffff/github.png" alt="GitHub" class="w-5 h-5">
                 <span>Explore Our GitHub Projects</span>
             </a>
@@ -172,30 +211,30 @@
 
         <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
-        <section id="focus" class="w-full text-center py-16 md:py-24 animate-fade-in-up" style="animation-delay: 0.4s;">
+        <section id="focus" class="w-full text-center py-16 md:py-24 animate-fade-in-up delay-2">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">Our Core Focus Areas</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Open-Source LLMs</h3>
                     <p class="text-gray-400 text-sm md:text-base">Developing and fine-tuning open-source models that are accessible and transparent to the global research community.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI Tooling & Frameworks</h3>
                     <p class="text-gray-400 text-sm md:text-base">Building the next generation of robust and intuitive tools to streamline AI development and deployment.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Vector Databases</h3>
                     <p class="text-gray-400 text-sm md:text-base">Advancing high-performance vector databases crucial for efficient retrieval-augmented generation (RAG) systems.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI-Powered Agents</h3>
                     <p class="text-gray-400 text-sm md:text-base">Designing autonomous agents that can solve complex problems and automate workflows with precision.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Data & Ethics</h3>
                     <p class="text-gray-400 text-sm md:text-base">Committed to ethical AI practices, promoting transparency, fairness, and accountability in all our work.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02]">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Collaboration</h3>
                     <p class="text-gray-400 text-sm md:text-base">Fostering a vibrant community through mentorship, shared knowledge, and collaborative problem-solving.</p>
                 </div>
@@ -204,16 +243,44 @@
 
         <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
-        <section id="community" class="text-center max-w-4xl py-16 md:py-24 animate-fade-in-up" style="animation-delay: 0.6s;">
+        <section id="data-vis" class="w-full text-center py-16 md:py-24 animate-fade-in-up delay-3">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">System Performance Metrics</h2>
+            <div class="glassmorphism p-8 rounded-2xl border-gray-700 relative overflow-hidden">
+                <p class="text-sm font-['IBM_Plex_Mono'] text-gray-400 text-left mb-4">
+                    // REAL-TIME DATA ANALYSIS
+                </p>
+                <div class="relative w-full h-64 md:h-80 flex items-end justify-between px-4 pb-4">
+                    <div class="absolute inset-0 z-0 opacity-20" style="background-image: linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    <div class="flex-1 h-full flex items-end justify-around">
+                        <div class="w-4 md:w-6 bg-[#00FFFF] rounded-t-full transition-all duration-1000 ease-out animate-pulse" style="height: 70%; animation-delay: 0.1s;"></div>
+                        <div class="w-4 md:w-6 bg-[#00FFFF] rounded-t-full transition-all duration-1000 ease-out animate-pulse" style="height: 90%; animation-delay: 0.2s;"></div>
+                        <div class="w-4 md:w-6 bg-[#00FFFF] rounded-t-full transition-all duration-1000 ease-out animate-pulse" style="height: 60%; animation-delay: 0.3s;"></div>
+                        <div class="w-4 md:w-6 bg-[#00FFFF] rounded-t-full transition-all duration-1000 ease-out animate-pulse" style="height: 80%; animation-delay: 0.4s;"></div>
+                        <div class="w-4 md:w-6 bg-[#8B5CF6] rounded-t-full transition-all duration-1000 ease-out animate-pulse" style="height: 50%; animation-delay: 0.5s;"></div>
+                        <div class="w-4 md:w-6 bg-[#8B5CF6] rounded-t-full transition-all duration-1000 ease-out animate-pulse" style="height: 75%; animation-delay: 0.6s;"></div>
+                        <div class="w-4 md:w-6 bg-[#8B5CF6] rounded-t-full transition-all duration-1000 ease-out animate-pulse" style="height: 85%; animation-delay: 0.7s;"></div>
+                        <div class="w-4 md:w-6 bg-[#00FFFF] rounded-t-full transition-all duration-1000 ease-out animate-pulse" style="height: 70%; animation-delay: 0.8s;"></div>
+                        <div class="w-4 md:w-6 bg-[#00FFFF] rounded-t-full transition-all duration-1000 ease-out animate-pulse" style="height: 90%; animation-delay: 0.9s;"></div>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="text-gray-300 text-sm">SYNCHRONIZATION: <span class="text-[#00FFFF]">ACTIVE</span></p>
+                </div>
+            </div>
+        </section>
+
+        <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
+
+        <section id="community" class="text-center max-w-4xl py-16 md:py-24 animate-fade-in-up delay-4">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Join Our Community</h2>
             <p class="text-gray-300 text-base md:text-lg mb-8">
                 Vectorphile thrives on collaboration. We invite developers, researchers, and AI enthusiasts to contribute to our projects and help shape the future of open-source AI.
             </p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="https://github.com/vectorphile" target="_blank" class="glassmorphism border-gray-700 hover:border-[#00FFFF] text-white px-6 py-3 rounded-lg transition duration-300">
+                <a href="https://github.com/vectorphile" target="_blank" class="glassmorphism btn-dynamic text-white px-6 py-3 rounded-lg transition duration-300">
                     GitHub →
                 </a>
-                <a href="https://huggingface.co/Vectorphile" target="_blank" class="glassmorphism border-gray-700 hover:border-[#00FFFF] text-white px-6 py-3 rounded-lg transition duration-300">
+                <a href="https://huggingface.co/Vectorphile" target="_blank" class="glassmorphism btn-dynamic text-white px-6 py-3 rounded-lg transition duration-300">
                     Hugging Face →
                 </a>
             </div>
@@ -226,7 +293,7 @@
     <footer class="glassmorphism text-gray-400 text-center py-6 border-t border-gray-700 px-4 mt-auto">
         <p class="text-sm">© <span id="year"></span> Vectorphile. All rights reserved.</p>
         <div class="mt-3 space-x-4 text-xs md:text-sm flex flex-wrap justify-center">
-            <a href="https://github.com/vectorphile" class="text-[#00FFFF] hover:opacity-80 transition duration-200">GitHub</a>
+            <a href="https://github.com/saadsalmanakram" class="text-[#00FFFF] hover:opacity-80 transition duration-200">GitHub</a>
             <a href="https://huggingface.co/Vectorphile" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Hugging Face</a>
             <a href="#" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Privacy Policy</a>
             <a href="#" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Terms of Service</a>
@@ -236,39 +303,40 @@
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
 
-        // Mobile menu toggle functionality
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const closeMobileMenuButton = document.getElementById('close-mobile-menu');
         const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenuOverlay.classList.remove('hidden');
-            setTimeout(() => mobileMenuOverlay.classList.add('animate-fade-in-down'), 10);
+            mobileMenuOverlay.classList.remove('hidden', 'slide-out-top');
+            mobileMenuOverlay.classList.add('slide-in-top');
         });
 
         closeMobileMenuButton.addEventListener('click', () => {
-            mobileMenuOverlay.classList.remove('animate-fade-in-down');
-            setTimeout(() => mobileMenuOverlay.classList.add('hidden'), 300);
+            mobileMenuOverlay.classList.remove('slide-in-top');
+            mobileMenuOverlay.classList.add('slide-out-top');
+            setTimeout(() => {
+                mobileMenuOverlay.classList.add('hidden');
+            }, 500); // Match CSS animation duration
         });
 
-        // Smooth scrolling for navigation links
         document.querySelectorAll('nav a, .mobile-nav-link').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (href && href.startsWith('#')) {
                     e.preventDefault();
-                    document.querySelector(href).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    if (mobileMenuOverlay.classList.contains('animate-fade-in-down')) {
-                        mobileMenuOverlay.classList.remove('animate-fade-in-down');
-                        setTimeout(() => mobileMenuOverlay.classList.add('hidden'), 300);
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                    if (!mobileMenuOverlay.classList.contains('hidden')) {
+                        mobileMenuOverlay.classList.remove('slide-in-top');
+                        mobileMenuOverlay.classList.add('slide-out-top');
+                        setTimeout(() => {
+                            mobileMenuOverlay.classList.add('hidden');
+                        }, 500);
                     }
                 }
             });
         });
 
-        // Animate elements on scroll using Intersection Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -276,12 +344,14 @@
                     observer.unobserve(entry.target);
                 }
             });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         });
 
         document.querySelectorAll('.animate-fade-in-up').forEach(el => {
             observer.observe(el);
         });
     </script>
-
 </body>
 </html>
