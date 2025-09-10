@@ -9,7 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* CORE STYLES & FONT DEFINITIONS */
-        html, body {
+        html {
+            perspective: 1200px;
+        }
+
+        body {
             height: 100%;
             margin: 0;
             font-family: 'Space Grotesk', sans-serif;
@@ -19,6 +23,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
+            transform-style: preserve-3d;
         }
 
         /* --- NEXT-GEN ANIMATED BACKGROUND --- */
@@ -42,7 +47,7 @@
             animation: hero-glow-shift 15s linear infinite;
             z-index: 1;
         }
-        
+         
         @keyframes hero-glow-shift {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -117,7 +122,7 @@
             display: inline-block;
             transform: skew(10deg);
         }
-        
+         
         /* --- OTHER STYLES --- */
         .glassmorphism {
             background-color: rgba(30, 41, 59, 0.2);
@@ -127,18 +132,18 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 255, 255, 0.1);
             transition: all 0.4s ease;
         }
-         
+          
         .glassmorphism:hover {
             border-color: rgba(0, 255, 255, 0.6);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 255, 0.4);
             transform: translateY(-2px);
         }
-         
+          
         .accent-text {
             color: #00FFFF;
             text-shadow: 0 0 8px #00FFFF, 0 0 15px #00FFFF;
         }
-         
+          
         .btn-dynamic {
             position: relative;
             z-index: 1;
@@ -177,16 +182,65 @@
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
         .delay-4 { animation-delay: 0.8s; }
-         
+          
         @keyframes slideInFromTop { from { transform: translateY(-100%); } to { transform: translateY(0); } }
         @keyframes slideOutToTop { from { transform: translateY(0); } to { transform: translateY(-100%); } }
         .slide-in-top { animation: slideInFromTop 0.5s ease-out forwards; }
         .slide-out-top { animation: slideOutToTop 0.5s ease-in forwards; }
 
+        /* --- NEW: HERO SECTION REVAMP --- */
+        .hero-container {
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .hero-title-hologram {
+            position: relative;
+            z-index: 10;
+            font-size: 5rem;
+            line-height: 1;
+            color: transparent;
+            text-align: center;
+            background: linear-gradient(45deg, #00FFFF, #8B5CF6, #FF00FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            filter: drop-shadow(0 0 5px #00FFFF) drop-shadow(0 0 10px #8B5CF6);
+            transform: translateZ(20px);
+            animation: holographic-pulse 10s ease-in-out infinite;
+        }
+        .hero-title-hologram::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.8), 0 0 20px rgba(139, 92, 246, 0.6), 0 0 30px rgba(139, 92, 246, 0.4);
+            animation: holographic-glitch 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+            z-index: -1;
+        }
+        @keyframes holographic-pulse {
+            0%, 100% { filter: drop-shadow(0 0 5px #00FFFF) drop-shadow(0 0 10px #8B5CF6); }
+            50% { filter: drop-shadow(0 0 15px #00FFFF) drop-shadow(0 0 25px #8B5CF6) drop-shadow(0 0 40px #FF00FF); }
+        }
+        @keyframes holographic-glitch {
+            0% { transform: translate(0); opacity: 0.8; }
+            10% { transform: translate(5px, 5px); opacity: 0.6; }
+            20% { transform: translate(-5px, -5px); opacity: 0.7; }
+            30% { transform: translate(2px, -2px); opacity: 0.5; }
+            40% { transform: translate(0); opacity: 0.8; }
+            100% { transform: translate(0); opacity: 0.8; }
+        }
+
+        .cta-btn-wrapper {
+            transform: translateZ(10px);
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
-     
+      
     <div class="animated-hero fixed inset-0 z-0">
         <div id="particle-canvas" class="particle-bg"></div>
         <div class="scanline-effect"></div>
@@ -302,7 +356,7 @@
                 </p>
             </div>
         </div>
-        
+         
         <nav class="hidden md:flex ml-auto items-center space-x-6">
             <a href="#about" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
                 <span class="z-10">About</span>
@@ -321,7 +375,7 @@
                 <span>GitHub →</span>
             </a>
         </nav>
-        
+         
         <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
             <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
         </button>
@@ -339,22 +393,22 @@
     </div>
 
     <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-10 max-w-7xl mx-auto">
-        
-        <section id="about" class="animated-hero text-center max-w-5xl py-20 md:py-32 flex flex-col items-center justify-center relative">
+         
+        <section id="about" class="hero-container text-center max-w-5xl py-20 md:py-32 flex flex-col items-center justify-center relative">
             <div class="z-20 animate-fade-in-up delay-1">
                 <p class="text-sm font-['IBM_Plex_Mono'] text-gray-400 uppercase tracking-widest mb-4">Pioneering the Future</p>
-                <h2 class="text-5xl md:text-7xl font-bold leading-tight text-gradient-main">
+                <h2 class="hero-title-hologram text-5xl md:text-7xl font-bold leading-tight" data-text="Democratizing Intelligence, One Algorithm at a Time.">
                     Democratizing Intelligence, One Algorithm at a Time.
                 </h2>
                 <p class="text-gray-300 text-base md:text-lg leading-relaxed mt-8 max-w-2xl mx-auto">
                     <strong class="font-bold text-accent-text">Vectorphile</strong> is an open-source collective at the forefront of <strong class="text-[#00FFFF]">Generative AI</strong> and <strong class="text-[#00FFFF]">AI-driven software development</strong>. We are a community dedicated to building transparent, scalable, and impactful solutions that push the boundaries of machine learning, NLP, and multimodal AI.
                 </p>
-                <a href="https://github.com/vectorphile" target="_blank" class="mt-12 inline-flex items-center space-x-2 cta-btn-main">
+                <a href="https://github.com/vectorphile" target="_blank" class="mt-12 inline-flex items-center space-x-2 cta-btn-main cta-btn-wrapper">
                     <span>Explore Our GitHub Projects</span>
                 </a>
             </div>
         </section>
-        
+         
         <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
         <section id="focus" class="w-full text-center py-16 md:py-24 animate-fade-in-up delay-2">
@@ -469,6 +523,26 @@
 
         document.querySelectorAll('.animate-fade-in-up').forEach(el => {
             observer.observe(el);
+        });
+
+        // NEW: 3D Tilt Effect
+        const heroContainer = document.querySelector('.hero-container');
+
+        document.addEventListener('mousemove', (e) => {
+            const rect = heroContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const x = e.clientX - centerX;
+            const y = e.clientY - centerY;
+
+            const rotateX = -y / 20; // Invert Y-axis tilt
+            const rotateY = x / 20;
+
+            heroContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            heroContainer.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
         });
     </script>
 </body>
