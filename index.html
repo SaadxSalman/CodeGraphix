@@ -21,26 +21,38 @@
             overflow-x: hidden;
         }
 
-        /* --- NEXT-GEN ANIMATED BACKGROUND GRID & SHADOWS --- */
-        .animated-grid-background {
+        /* --- REVAMPED FUTURISTIC BACKGROUND --- */
+        .hero-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2; /* Placed below the glow effects */
-            background-image:
-                linear-gradient(to right, #1f2937 1px, transparent 1px),
-                linear-gradient(to bottom, #1f2937 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: grid-movement 60s linear infinite;
+            z-index: -3;
         }
-
-        @keyframes grid-movement {
-            0% { background-position: 0 0; }
-            100% { background-position: -600px -600px; }
+        .circuit-board {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="circuit" width="200" height="200" patternUnits="userSpaceOnUse"><path d="M 0 0 L 200 200 M 0 200 L 200 0" stroke="%231f2937" stroke-width="1.5" stroke-opacity="0.2"/></pattern></defs><rect width="100%" height="100%" fill="url(%23circuit)"/></svg>');
+            opacity: 0.1;
+            transform: rotate(45deg) scale(1.5);
         }
-
+        .matrix-flow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(3, 7, 18, 0.1), rgba(3, 7, 18, 0.9)), repeating-linear-gradient(0deg, #00ffff 0px, transparent 1px, transparent 20px), repeating-linear-gradient(90deg, #8b5cf6 0px, transparent 1px, transparent 20px);
+            animation: matrix-scroll 30s linear infinite;
+        }
+        @keyframes matrix-scroll {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 100%; }
+        }
         .background-glow-1, .background-glow-2 {
             position: fixed;
             border-radius: 50%;
@@ -51,7 +63,6 @@
         }
         .background-glow-1 { top: 10%; left: 10%; width: 500px; height: 500px; background-color: #00FFFF; }
         .background-glow-2 { bottom: 20%; right: 15%; width: 400px; height: 400px; background-color: #8B5CF6; animation-delay: 2s; }
-
         @keyframes pulse-glow {
             0% { transform: scale(1); opacity: 0.2; }
             100% { transform: scale(1.1); opacity: 0.4; }
@@ -66,13 +77,12 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 255, 255, 0.1); /* Subtle neon inner glow */
             transition: all 0.4s ease;
         }
-        
         .glassmorphism:hover {
             border-color: rgba(0, 255, 255, 0.6);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 255, 0.4);
             transform: translateY(-2px); /* Slight lift on hover */
         }
-        
+
         /* --- ACCENT COLORS & TEXT EFFECTS --- */
         .accent-text {
             color: #00FFFF;
@@ -90,7 +100,7 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        
+
         /* --- DYNAMIC BUTTONS & INTERACTIONS --- */
         .btn-dynamic {
             position: relative;
@@ -132,7 +142,7 @@
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
         .delay-4 { animation-delay: 0.8s; }
-        
+
         /* --- MOBILE MENU ANIMATIONS --- */
         @keyframes slideInFromTop { from { transform: translateY(-100%); } to { transform: translateY(0); } }
         @keyframes slideOutToTop { from { transform: translateY(0); } to { transform: translateY(-100%); } }
@@ -142,8 +152,11 @@
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
-    
-    <div class="animated-grid-background"></div>
+
+    <div class="hero-background">
+        <div class="circuit-board"></div>
+        <div class="matrix-flow"></div>
+    </div>
     <div class="background-glow-1"></div>
     <div class="background-glow-2"></div>
 
@@ -157,7 +170,7 @@
                 </p>
             </div>
         </div>
-        
+
         <nav class="hidden md:flex ml-auto items-center space-x-6">
             <a href="#about" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
                 <span class="z-10">About</span>
@@ -176,7 +189,7 @@
                 <span>GitHub →</span>
             </a>
         </nav>
-        
+
         <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
             <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
         </button>
@@ -194,7 +207,7 @@
     </div>
 
     <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-10 max-w-7xl mx-auto">
-        
+
         <section id="about" class="text-center max-w-5xl py-20 md:py-32 animate-fade-in-up delay-1">
             <p class="text-sm font-['IBM_Plex_Mono'] text-gray-400 uppercase tracking-widest mb-4">Pioneering the Future</p>
             <h2 class="text-5xl md:text-7xl font-bold leading-tight text-gradient-main">
