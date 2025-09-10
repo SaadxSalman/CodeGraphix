@@ -25,10 +25,13 @@
         .animated-hero {
             position: relative;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
+        
         .animated-hero::before {
             content: '';
             position: absolute;
@@ -42,7 +45,7 @@
             animation: hero-glow-shift 15s linear infinite;
             z-index: 1;
         }
-        
+
         @keyframes hero-glow-shift {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -76,6 +79,24 @@
                 transparent 2px
             );
             pointer-events: none;
+        }
+
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), 
+                              linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+        }
+        
+        .main-content {
+            position: relative;
+            z-index: 10;
         }
 
         /* --- FOCAL TEXT & CTA STYLES --- */
@@ -127,18 +148,18 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 255, 255, 0.1);
             transition: all 0.4s ease;
         }
-         
+          
         .glassmorphism:hover {
             border-color: rgba(0, 255, 255, 0.6);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 255, 0.4);
             transform: translateY(-2px);
         }
-         
+          
         .accent-text {
             color: #00FFFF;
             text-shadow: 0 0 8px #00FFFF, 0 0 15px #00FFFF;
         }
-         
+          
         .btn-dynamic {
             position: relative;
             z-index: 1;
@@ -172,129 +193,175 @@
         ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #00FFFF, #8B5CF6, #00FFFF); }
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+        .animate-fade-in { animation: fadeIn 1s ease-out forwards; opacity: 0; }
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
         .delay-4 { animation-delay: 0.8s; }
-         
+        .delay-5 { animation-delay: 1.0s; }
+        .delay-6 { animation-delay: 1.2s; }
+        
         @keyframes slideInFromTop { from { transform: translateY(-100%); } to { transform: translateY(0); } }
         @keyframes slideOutToTop { from { transform: translateY(0); } to { transform: translateY(-100%); } }
         .slide-in-top { animation: slideInFromTop 0.5s ease-out forwards; }
         .slide-out-top { animation: slideOutToTop 0.5s ease-in forwards; }
 
+        /* --- NEW STYLES FOR FUTURISTIC EFFECTS --- */
+        .header-logo-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .header-logo-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #00FFFF);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .header-logo-container:hover::after {
+            opacity: 1;
+            animation: digital-rain 0.8s linear infinite;
+        }
+        
+        @keyframes digital-rain {
+            from { background-position: 0 -100px; }
+            to { background-position: 0 100px; }
+        }
+
+        .cta-btn-main {
+            position: relative;
+            overflow: hidden;
+            border-radius: 9999px;
+            transform: skew(-10deg);
+        }
+
+        .cta-btn-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(to right, #00FFFF, #8B5CF6);
+            transition: transform 0.4s ease-out;
+            transform: skew(10deg);
+            z-index: -1;
+        }
+        .cta-btn-main:hover::before {
+            transform: translateX(50%) skew(10deg);
+        }
+
+        /* 3D Cube */
+        .cube-container {
+            perspective: 1000px;
+            width: 50px;
+            height: 50px;
+            margin-right: 1.5rem;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 15s infinite linear;
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            background: rgba(0, 255, 255, 0.1);
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.5rem;
+            color: #00FFFF;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .cube-face.front { transform: translateZ(25px); }
+        .cube-face.back { transform: rotateY(180deg) translateZ(25px); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(25px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(25px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(25px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(25px); }
+
+        @keyframes rotateCube {
+            from { transform: rotateX(0) rotateY(0) rotateZ(0); }
+            to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        /* Typing effect for title */
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        /* The typing animation */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00FFFF; }
+        }
+
+        /* Spotlight effect */
+        .spotlight-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spotlight-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(0, 255, 255, 0.1) 0%, transparent 40%);
+            transition: background 0.1s;
+            pointer-events: none;
+            z-index: 1;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
-     
+    
     <div class="animated-hero fixed inset-0 z-0">
-        <div id="particle-canvas" class="particle-bg"></div>
+        <div class="grid-bg"></div>
         <div class="scanline-effect"></div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        particlesJS('particle-canvas', {
-            "particles": {
-                "number": {
-                    "value": 150,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": ["#00FFFF", "#8B5CF6", "#FF00FF"]
-                },
-                "shape": {
-                    "type": "circle"
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 2,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#1F2937",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 1.5,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 400,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 0.8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-            "retina_detect": true
-        });
-    </script>
+    
     <header class="glassmorphism bg-opacity-20 text-white px-4 py-3 md:px-10 md:py-4 flex items-center justify-between z-50 sticky top-0 border-b border-gray-700">
         <div class="flex items-center space-x-2 md:space-x-4">
-            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-10 w-10 md:h-12 md:w-12 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] animate-pulse">
+            <div class="cube-container hidden md:block">
+                <div class="cube">
+                    <div class="cube-face front"></div>
+                    <div class="cube-face back"></div>
+                    <div class="cube-face right"></div>
+                    <div class="cube-face left"></div>
+                    <div class="cube-face top"></div>
+                    <div class="cube-face bottom"></div>
+                </div>
+            </div>
+            <div class="header-logo-container">
+                <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-10 w-10 md:h-12 md:w-12 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] animate-pulse">
+            </div>
             <div>
                 <h1 class="text-2xl md:text-3xl font-bold font-['IBM_Plex_Mono'] tracking-wide">VECTORPHILE</h1>
                 <p class="text-xs md:text-sm font-['IBM_Plex_Mono'] text-gray-400 mt-0.5">
@@ -338,49 +405,50 @@
         </nav>
     </div>
 
-    <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-10 max-w-7xl mx-auto">
-        
-        <section id="about" class="animated-hero text-center max-w-5xl py-20 md:py-32 flex flex-col items-center justify-center relative">
-            <div class="z-20 animate-fade-in-up delay-1">
-                <p class="text-sm font-['IBM_Plex_Mono'] text-gray-400 uppercase tracking-widest mb-4">Pioneering the Future</p>
-                <h2 class="text-5xl md:text-7xl font-bold leading-tight text-gradient-main">
-                    Democratizing Intelligence, One Algorithm at a Time.
-                </h2>
-                <p class="text-gray-300 text-base md:text-lg leading-relaxed mt-8 max-w-2xl mx-auto">
-                    <strong class="font-bold text-accent-text">Vectorphile</strong> is an open-source collective at the forefront of <strong class="text-[#00FFFF]">Generative AI</strong> and <strong class="text-[#00FFFF]">AI-driven software development</strong>. We are a community dedicated to building transparent, scalable, and impactful solutions that push the boundaries of machine learning, NLP, and multimodal AI.
-                </p>
-                <a href="https://github.com/vectorphile" target="_blank" class="mt-12 inline-flex items-center space-x-2 cta-btn-main">
-                    <span>Explore Our GitHub Projects</span>
-                </a>
-            </div>
-        </section>
+    <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-10 max-w-7xl mx-auto main-content">
+        <div id="spotlight-section" class="spotlight-container w-full">
+            <section id="about" class="text-center max-w-5xl py-20 md:py-32 flex flex-col items-center justify-center relative">
+                <div class="z-20 animate-fade-in-up delay-1">
+                    <p class="text-sm font-['IBM_Plex_Mono'] text-gray-400 uppercase tracking-widest mb-4">Pioneering the Future</p>
+                    <h2 class="text-5xl md:text-7xl font-bold leading-tight text-gradient-main typing-effect">
+                        Democratizing Intelligence, One Algorithm at a Time.
+                    </h2>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed mt-8 max-w-2xl mx-auto">
+                        <strong class="font-bold text-accent-text">Vectorphile</strong> is an open-source collective at the forefront of <strong class="text-[#00FFFF]">Generative AI</strong> and <strong class="text-[#00FFFF]">AI-driven software development</strong>. We are a community dedicated to building transparent, scalable, and impactful solutions that push the boundaries of machine learning, NLP, and multimodal AI.
+                    </p>
+                    <a href="https://github.com/vectorphile" target="_blank" class="mt-12 inline-flex items-center space-x-2 cta-btn-main">
+                        <span>Explore Our GitHub Projects</span>
+                    </a>
+                </div>
+            </section>
+        </div>
         
         <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
-        <section id="focus" class="w-full text-center py-16 md:py-24 animate-fade-in-up delay-2">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">Our Core Focus Areas</h2>
+        <section id="focus" class="w-full text-center py-16 md:py-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12 animate-fade-in-up delay-2">Our Core Focus Areas</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl animate-fade-in-up delay-3">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Open-Source LLMs</h3>
                     <p class="text-gray-400 text-sm md:text-base">Developing and fine-tuning open-source models that are accessible and transparent to the global research community.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl animate-fade-in-up delay-4">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI Tooling & Frameworks</h3>
                     <p class="text-gray-400 text-sm md:text-base">Building the next generation of robust and intuitive tools to streamline AI development and deployment.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl animate-fade-in-up delay-5">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Vector Databases</h3>
                     <p class="text-gray-400 text-sm md:text-base">Advancing high-performance vector databases crucial for efficient retrieval-augmented generation (RAG) systems.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl animate-fade-in-up delay-3">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI-Powered Agents</h3>
                     <p class="text-gray-400 text-sm md:text-base">Designing autonomous agents that can solve complex problems and automate workflows with precision.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl animate-fade-in-up delay-4">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Data & Ethics</h3>
                     <p class="text-gray-400 text-sm md:text-base">Committed to ethical AI practices, promoting transparency, fairness, and accountability in all our work.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl animate-fade-in-up delay-5">
                     <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Collaboration</h3>
                     <p class="text-gray-400 text-sm md:text-base">Fostering a vibrant community through mentorship, shared knowledge, and collaborative problem-solving.</p>
                 </div>
@@ -389,7 +457,7 @@
 
         <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
-        <section id="community" class="text-center max-w-4xl py-16 md:py-24 animate-fade-in-up delay-3">
+        <section id="community" class="text-center max-w-4xl py-16 md:py-24 animate-fade-in-up delay-6">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Join Our Community</h2>
             <p class="text-gray-300 text-base md:text-lg mb-8">
                 Vectorphile thrives on collaboration. We invite developers, researchers, and AI enthusiasts to contribute to our projects and help shape the future of open-source AI.
@@ -469,6 +537,15 @@
 
         document.querySelectorAll('.animate-fade-in-up').forEach(el => {
             observer.observe(el);
+        });
+
+        // Spotlight effect
+        document.getElementById('spotlight-section').addEventListener('mousemove', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            e.target.style.setProperty('--x', `${x}px`);
+            e.target.style.setProperty('--y', `${y}px`);
         });
     </script>
 </body>
