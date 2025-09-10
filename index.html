@@ -3,74 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vectorphile // Next-Gen AI</title>
+    <title>Vectorphile</title>
     <link rel="icon" href="BG Free Logo.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables for a Unified Theme */
-        :root {
-            --bg-primary: #030712;
-            --text-primary: #E2E8F0;
-            --text-secondary: #94A3B8;
-            --accent-1: #00FFFF;
-            --accent-2: #8B5CF6;
-            --accent-3: #FF00FF;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --glass-bg: rgba(30, 41, 59, 0.2);
-            --glass-border: rgba(255, 255, 255, 0.15);
-        }
-
-        /* Core Body & Typography */
+        /* CORE STYLES & FONT DEFINITIONS */
         html, body {
             height: 100%;
             margin: 0;
             font-family: 'Space Grotesk', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            background-color: #030712;
+            color: #E2E8F0;
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2300FFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crosshair"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="2" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line></svg>'), auto;
         }
 
-        /* Revamped Animated Background */
+        /* --- NEXT-GEN ANIMATED BACKGROUND --- */
         .animated-hero {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            background: radial-gradient(circle at top left, var(--accent-1) 0%, transparent 40%),
-                        radial-gradient(circle at bottom right, var(--accent-2) 0%, transparent 40%);
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .animated-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 50% 10%, rgba(255, 0, 255, 0.1) 0%, transparent 40%);
             animation: hero-glow-shift 15s linear infinite;
-        }
-
-        @keyframes hero-glow-shift {
-            0% { transform: scale(1); opacity: 0.2; }
-            50% { transform: scale(1.1); opacity: 0.3; }
-            100% { transform: scale(1); opacity: 0.2; }
-        }
-
-        /* --- New: Mouse-following Glow --- */
-        #mouse-glow {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--accent-1) 0%, transparent 50%);
-            opacity: 0;
-            filter: blur(80px);
-            pointer-events: none;
             z-index: 1;
-            transition: opacity 0.5s ease;
-            transform: translate(-50%, -50%);
-            will-change: transform;
         }
-        body:hover #mouse-glow { opacity: 0.5; }
+        
+        @keyframes hero-glow-shift {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
 
-        /* --- Dynamic Text Gradients --- */
+        .particle-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.8;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%230f141f" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 0v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm10-21h.01v.01H46V13zm-6 0h.01v.01H40V13zm6-6h.01v.01H46V7zm-6 0h.01v.01H40V7zm-6 0h.01v.01H34V7zm-6 0h.01v.01H28V7zm-6 0h.01v.01H22V7zm-6 0h.01v.01H16V7zm-6 0h.01v.01H10V7zm-6 0h.01v.01H4V7zm0 6h.01v.01H4V13zm0 6h.01v.01H4V19zm0 6h.01v.01H4V25zm0 6h.01v.01H4V31zm0 6h.01v.01H4V37zm0 6h.01v.01H4V43zm0 6h.01v.01H4V49zm0 6h.01v.01H4V55zm6 0h.01v.01H10V55zm6 0h.01v.01H16V55zm6 0h.01v.01H22V55zm6 0h.01v.01H28V55zm6 0h.01v.01H34V55zm6 0h.01v.01H40V55zm6 0h.01v.01H46V55zm6 0h.01v.01H52V55zm6 0h.01v.01H58V55zm0-6h.01v.01H58V49zm0-6h.01v.01H58V43zm0-6h.01v.01H58V37zm0-6h.01v.01H58V31zm0-6h.01v.01H58V25zm0-6h.01v.01H58V19zm0-6h.01v.01H58V13zm0-6h.01v.01H58V7z"%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            background-size: 60px 60px;
+        }
+
+        .scanline-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                rgba(0, 0, 0, 0.2) 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+        }
+
+        /* --- FOCAL TEXT & CTA STYLES --- */
         .text-gradient-main {
-            background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            background: linear-gradient(45deg, #00FFFF, #8B5CF6, #FF00FF);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -84,101 +94,204 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- CTA Button with more dynamic effect --- */
         .cta-btn-main {
             position: relative;
             z-index: 3;
-            background: linear-gradient(90deg, var(--accent-2), var(--accent-1));
-            color: var(--bg-primary);
+            background: linear-gradient(90deg, #8B5CF6, #00FFFF);
+            color: #030712;
             font-weight: bold;
             padding: 1rem 2.5rem;
             border-radius: 9999px;
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 0 15px var(--accent-1);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
             transform: skew(-10deg);
-            overflow: hidden;
-            border: 2px solid transparent;
         }
 
         .cta-btn-main:hover {
             transform: scale(1.05) skew(-10deg);
-            box-shadow: 0 0 25px var(--accent-1), 0 0 40px var(--accent-2);
-            border-image: linear-gradient(45deg, var(--accent-1), var(--accent-2));
-            border-image-slice: 1;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(139, 92, 246, 0.6);
         }
 
         .cta-btn-main span {
             display: inline-block;
             transform: skew(10deg);
         }
-
-        /* --- Glassmorphism Enhancements --- */
+        
+        /* --- OTHER STYLES --- */
         .glassmorphism {
-            background-color: var(--glass-bg);
+            background-color: rgba(30, 41, 59, 0.2);
             backdrop-filter: blur(25px) brightness(1.2);
             -webkit-backdrop-filter: blur(25px) brightness(1.2);
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 255, 255, 0.1);
             transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
         }
-
+         
         .glassmorphism:hover {
-            border-color: var(--accent-1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 25px var(--accent-1);
+            border-color: rgba(0, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 255, 0.4);
             transform: translateY(-2px);
         }
-
-        /* --- 3D Card Hover Effect --- */
-        .card-3d-effect {
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-            position: relative;
+         
+        .accent-text {
+            color: #00FFFF;
+            text-shadow: 0 0 8px #00FFFF, 0 0 15px #00FFFF;
         }
-
-        .card-3d-effect::before {
+         
+        .btn-dynamic {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .btn-dynamic::before {
             content: '';
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(0, 255, 255, 0.2), transparent 80%);
-            opacity: 0;
-            transition: opacity 0.5s;
-            z-index: 0;
-            pointer-events: none;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 255, 255, 0.4), rgba(139, 92, 246, 0.4));
+            transition: transform 0.4s ease-out;
+            z-index: -1;
+        }
+        .btn-dynamic:hover::before {
+            transform: translateX(100%);
+        }
+        .btn-dynamic:active {
+            transform: scale(0.98);
         }
 
-        .card-3d-effect:hover::before {
-            opacity: 1;
-        }
-
-        /* Scrollbar & Animations */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0e121a; }
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+            background: linear-gradient(180deg, #00FFFF, #8B5CF6);
             border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--accent-1), var(--accent-2), var(--accent-1)); }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #00FFFF, #8B5CF6, #00FFFF); }
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
         .delay-4 { animation-delay: 0.8s; }
+         
+        @keyframes slideInFromTop { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        @keyframes slideOutToTop { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+        .slide-in-top { animation: slideInFromTop 0.5s ease-out forwards; }
+        .slide-out-top { animation: slideOutToTop 0.5s ease-in forwards; }
+
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
-    <div id="mouse-glow"></div>
-    <div class="animated-hero fixed inset-0 z-0"></div>
-    <div class="scanline-effect fixed inset-0 z-10 pointer-events-none"></div>
-
+     
+    <div class="animated-hero fixed inset-0 z-0">
+        <div id="particle-canvas" class="particle-bg"></div>
+        <div class="scanline-effect"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particle-canvas', {
+            "particles": {
+                "number": {
+                    "value": 150,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": ["#00FFFF", "#8B5CF6", "#FF00FF"]
+                },
+                "shape": {
+                    "type": "circle"
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#1F2937",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 0.8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
     <header class="glassmorphism bg-opacity-20 text-white px-4 py-3 md:px-10 md:py-4 flex items-center justify-between z-50 sticky top-0 border-b border-gray-700">
         <div class="flex items-center space-x-2 md:space-x-4">
             <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-10 w-10 md:h-12 md:w-12 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] animate-pulse">
@@ -191,19 +304,19 @@
         </div>
         
         <nav class="hidden md:flex ml-auto items-center space-x-6">
-            <a href="#about" class="text-white hover:text-accent-1 transition duration-200 font-medium relative group">
+            <a href="#about" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
                 <span class="z-10">About</span>
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-1 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
-            <a href="#focus" class="text-white hover:text-accent-1 transition duration-200 font-medium relative group">
+            <a href="#focus" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
                 <span class="z-10">Focus</span>
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-1 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
-            <a href="#community" class="text-white hover:text-accent-1 transition duration-200 font-medium relative group">
+            <a href="#community" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
                 <span class="z-10">Community</span>
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-1 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
-            <a href="https://github.com/vectorphile" target="_blank" class="glassmorphism border border-gray-700 hover:border-accent-1 text-white px-4 py-2 rounded-lg text-sm transition duration-300 btn-dynamic">
+            <a href="https://github.com/vectorphile" target="_blank" class="glassmorphism border border-gray-700 hover:border-[#00FFFF] text-white px-4 py-2 rounded-lg text-sm transition duration-300 btn-dynamic">
                 <img src="https://img.icons8.com/ios-filled/30/ffffff/github.png" alt="GitHub" class="inline-block mr-2 w-4 h-4">
                 <span>GitHub →</span>
             </a>
@@ -214,29 +327,29 @@
         </button>
     </header>
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-bg-primary bg-opacity-95 z-40 flex-col items-center justify-center space-y-8 md:hidden hidden">
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#030712] bg-opacity-95 z-40 flex-col items-center justify-center space-y-8 md:hidden hidden">
         <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
             <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <nav class="flex flex-col items-center space-y-8 text-3xl font-bold">
-            <a href="#about" class="mobile-nav-link text-white hover:text-accent-1 transition duration-300">About</a>
-            <a href="#focus" class="mobile-nav-link text-white hover:text-accent-1 transition duration-300">Focus Areas</a>
-            <a href="#community" class="mobile-nav-link text-white hover:text-accent-1 transition duration-300">Community</a>
+            <a href="#about" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">About</a>
+            <a href="#focus" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">Focus Areas</a>
+            <a href="#community" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">Community</a>
         </nav>
     </div>
 
-    <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-20 max-w-7xl mx-auto">
+    <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-10 max-w-7xl mx-auto">
         
-        <section id="about" class="animated-hero-content text-center max-w-5xl py-20 md:py-32 flex flex-col items-center justify-center relative">
+        <section id="about" class="animated-hero text-center max-w-5xl py-20 md:py-32 flex flex-col items-center justify-center relative">
             <div class="z-20 animate-fade-in-up delay-1">
-                <p class="text-sm font-['IBM_Plex_Mono'] text-text-secondary uppercase tracking-widest mb-4">// Next-Gen AI & LLM Research</p>
+                <p class="text-sm font-['IBM_Plex_Mono'] text-gray-400 uppercase tracking-widest mb-4">Pioneering the Future</p>
                 <h2 class="text-5xl md:text-7xl font-bold leading-tight text-gradient-main">
-                    <span id="title-text" class="text-reveal"></span>
+                    Democratizing Intelligence, One Algorithm at a Time.
                 </h2>
-                <p class="text-text-secondary text-base md:text-lg leading-relaxed mt-8 max-w-2xl mx-auto animate-fade-in-up delay-2">
-                    <strong class="font-bold text-accent-1">Vectorphile</strong> is an open-source collective at the forefront of <strong class="text-accent-1">Generative AI</strong> and <strong class="text-accent-1">AI-driven software development</strong>. We are a community dedicated to building transparent, scalable, and impactful solutions that push the boundaries of machine learning, NLP, and multimodal AI.
+                <p class="text-gray-300 text-base md:text-lg leading-relaxed mt-8 max-w-2xl mx-auto">
+                    <strong class="font-bold text-accent-text">Vectorphile</strong> is an open-source collective at the forefront of <strong class="text-[#00FFFF]">Generative AI</strong> and <strong class="text-[#00FFFF]">AI-driven software development</strong>. We are a community dedicated to building transparent, scalable, and impactful solutions that push the boundaries of machine learning, NLP, and multimodal AI.
                 </p>
-                <a href="https://github.com/vectorphile" target="_blank" class="mt-12 inline-flex items-center space-x-2 cta-btn-main animate-fade-in-up delay-3">
+                <a href="https://github.com/vectorphile" target="_blank" class="mt-12 inline-flex items-center space-x-2 cta-btn-main">
                     <span>Explore Our GitHub Projects</span>
                 </a>
             </div>
@@ -244,32 +357,32 @@
         
         <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
-        <section id="focus" class="w-full text-center py-16 md:py-24">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12 animate-fade-in-up">Our Core Focus Areas</h2>
+        <section id="focus" class="w-full text-center py-16 md:py-24 animate-fade-in-up delay-2">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">Our Core Focus Areas</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-                <div class="glassmorphism p-6 md:p-8 rounded-xl card-3d-effect animate-fade-in-up delay-1">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-1 mb-2">Open-Source LLMs</h3>
-                    <p class="text-text-secondary text-sm md:text-base">Developing and fine-tuning open-source models that are accessible and transparent to the global research community.</p>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Open-Source LLMs</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Developing and fine-tuning open-source models that are accessible and transparent to the global research community.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl card-3d-effect animate-fade-in-up delay-2">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-1 mb-2">AI Tooling & Frameworks</h3>
-                    <p class="text-text-secondary text-sm md:text-base">Building the next generation of robust and intuitive tools to streamline AI development and deployment.</p>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI Tooling & Frameworks</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Building the next generation of robust and intuitive tools to streamline AI development and deployment.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl card-3d-effect animate-fade-in-up delay-3">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-1 mb-2">Vector Databases</h3>
-                    <p class="text-text-secondary text-sm md:text-base">Advancing high-performance vector databases crucial for efficient retrieval-augmented generation (RAG) systems.</p>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Vector Databases</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Advancing high-performance vector databases crucial for efficient retrieval-augmented generation (RAG) systems.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl card-3d-effect animate-fade-in-up delay-4">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-1 mb-2">AI-Powered Agents</h3>
-                    <p class="text-text-secondary text-sm md:text-base">Designing autonomous agents that can solve complex problems and automate workflows with precision.</p>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI-Powered Agents</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Designing autonomous agents that can solve complex problems and automate workflows with precision.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl card-3d-effect animate-fade-in-up delay-1">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-1 mb-2">Data & Ethics</h3>
-                    <p class="text-text-secondary text-sm md:text-base">Committed to ethical AI practices, promoting transparency, fairness, and accountability in all our work.</p>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Data & Ethics</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Committed to ethical AI practices, promoting transparency, fairness, and accountability in all our work.</p>
                 </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl card-3d-effect animate-fade-in-up delay-2">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-1 mb-2">Collaboration</h3>
-                    <p class="text-text-secondary text-sm md:text-base">Fostering a vibrant community through mentorship, shared knowledge, and collaborative problem-solving.</p>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Collaboration</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Fostering a vibrant community through mentorship, shared knowledge, and collaborative problem-solving.</p>
                 </div>
             </div>
         </section>
@@ -278,7 +391,7 @@
 
         <section id="community" class="text-center max-w-4xl py-16 md:py-24 animate-fade-in-up delay-3">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Join Our Community</h2>
-            <p class="text-text-secondary text-base md:text-lg mb-8">
+            <p class="text-gray-300 text-base md:text-lg mb-8">
                 Vectorphile thrives on collaboration. We invite developers, researchers, and AI enthusiasts to contribute to our projects and help shape the future of open-source AI.
             </p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
@@ -292,23 +405,22 @@
         </section>
 
         <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
+
     </main>
 
-    <footer class="glassmorphism text-text-secondary text-center py-6 border-t border-gray-700 px-4 mt-auto">
+    <footer class="glassmorphism text-gray-400 text-center py-6 border-t border-gray-700 px-4 mt-auto">
         <p class="text-sm">© <span id="year"></span> Vectorphile. All rights reserved.</p>
         <div class="mt-3 space-x-4 text-xs md:text-sm flex flex-wrap justify-center">
-            <a href="https://github.com/saadsalmanakram" class="text-accent-1 hover:opacity-80 transition duration-200">GitHub</a>
-            <a href="https://huggingface.co/Vectorphile" class="text-accent-1 hover:opacity-80 transition duration-200">Hugging Face</a>
-            <a href="#" class="text-accent-1 hover:opacity-80 transition duration-200">Privacy Policy</a>
-            <a href="#" class="text-accent-1 hover:opacity-80 transition duration-200">Terms of Service</a>
+            <a href="https://github.com/saadsalmanakram" class="text-[#00FFFF] hover:opacity-80 transition duration-200">GitHub</a>
+            <a href="https://huggingface.co/Vectorphile" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Hugging Face</a>
+            <a href="#" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Privacy Policy</a>
+            <a href="#" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Terms of Service</a>
         </div>
     </footer>
 
     <script>
-        // Set the current year
         document.getElementById("year").textContent = new Date().getFullYear();
 
-        // Mobile menu functionality
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const closeMobileMenuButton = document.getElementById('close-mobile-menu');
         const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
@@ -343,7 +455,6 @@
             });
         });
 
-        // Intersection Observer for fade-in animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -358,67 +469,6 @@
 
         document.querySelectorAll('.animate-fade-in-up').forEach(el => {
             observer.observe(el);
-        });
-
-        // --- New: Mouse Glow Effect ---
-        const mouseGlow = document.getElementById('mouse-glow');
-        document.addEventListener('mousemove', (e) => {
-            mouseGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-        });
-
-        // --- New: Text Reveal Effect ---
-        const text = "Democratizing Intelligence, One Algorithm at a Time.";
-        const titleElement = document.getElementById("title-text");
-        let charIndex = 0;
-        let lastTimestamp = 0;
-        const typingSpeed = 25; // Milliseconds per character
-
-        function typeWriter(timestamp) {
-            if (!lastTimestamp) lastTimestamp = timestamp;
-            const elapsed = timestamp - lastTimestamp;
-
-            if (elapsed > typingSpeed && charIndex < text.length) {
-                titleElement.textContent += text.charAt(charIndex);
-                charIndex++;
-                lastTimestamp = timestamp;
-            }
-
-            if (charIndex < text.length) {
-                requestAnimationFrame(typeWriter);
-            }
-        }
-        
-        // Start the typing animation when the element is in view
-        const titleObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    requestAnimationFrame(typeWriter);
-                    titleObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        titleObserver.observe(titleElement);
-        
-        // --- New: 3D Card Hover Effect ---
-        const cards = document.querySelectorAll('.card-3d-effect');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const xc = rect.width / 2;
-                const yc = rect.height / 2;
-                const dx = (x - xc) / xc;
-                const dy = (y - yc) / yc;
-                
-                card.style.transform = `rotateY(${dx * 8}deg) rotateX(${-dy * 8}deg)`;
-                card.style.setProperty('--x', `${x}px`);
-                card.style.setProperty('--y', `${y}px`);
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `rotateY(0) rotateX(0)`;
-            });
         });
     </script>
 </body>
