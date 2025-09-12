@@ -135,6 +135,11 @@
         .fade-in { animation: fadeIn 1s ease-out forwards; }
         .fade-in-1 { animation-delay: 0.2s; }
         .fade-in-2 { animation-delay: 0.4s; }
+
+        .text-glow {
+            text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 15px #00FFFF, 0 0 20px #00FFFF, 0 0 25px #00FFFF;
+        }
+
     </style>
 </head>
 <body class="flex flex-col min-h-screen grid-bg">
@@ -187,13 +192,6 @@
     </div>
 
     <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-10 max-w-7xl mx-auto">
-        
-        <style>
-        /* CSS for the glow effect */
-        .text-glow {
-            text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 15px #00FFFF, 0 0 20px #00FFFF, 0 0 25px #00FFFF;
-        }
-        </style>
 
         <section id="about" class="w-full text-center max-w-5xl py-20 md:py-32 flex flex-col items-center justify-center relative">
             <div class="z-20 fade-in">
