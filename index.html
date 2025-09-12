@@ -1,476 +1,509 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vectorphile</title>
-    <link rel="icon" href="BG Free Logo.png" type="image/png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* CORE STYLES & FONT DEFINITIONS */
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #030712;
-            color: #E2E8F0;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vectorphile</title>
+    <link rel="icon" href="BG Free Logo.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CORE STYLES & FONT DEFINITIONS */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #030712;
+            color: #E2E8F0;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
 
-        /* --- NEXT-GEN ANIMATED BACKGROUND --- */
-        .animated-hero {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
+        /* --- NEXT-GEN ANIMATED BACKGROUND --- */
+        .animated-hero {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
 
-        .animated-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 10% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
-                        radial-gradient(circle at 50% 10%, rgba(255, 0, 255, 0.1) 0%, transparent 40%);
-            animation: hero-glow-shift 15s linear infinite;
-            z-index: 1;
-        }
-          
-        @keyframes hero-glow-shift {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
+        .animated-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 50% 10%, rgba(255, 0, 255, 0.1) 0%, transparent 40%);
+            animation: hero-glow-shift 15s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes hero-glow-shift {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
 
-        .particle-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.8;
-            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%230f141f" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 0v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm10-21h.01v.01H46V13zm-6 0h.01v.01H40V13zm6-6h.01v.01H46V7zm-6 0h.01v.01H40V7zm-6 0h.01v.01H34V7zm-6 0h.01v.01H28V7zm-6 0h.01v.01H22V7zm-6 0h.01v.01H16V7zm-6 0h.01v.01H10V7zm-6 0h.01v.01H4V7zm0 6h.01v.01H4V13zm0 6h.01v.01H4V19zm0 6h.01v.01H4V25zm0 6h.01v.01H4V31zm0 6h.01v.01H4V37zm0 6h.01v.01H4V43zm0 6h.01v.01H4V49zm0 6h.01v.01H4V55zm6 0h.01v.01H10V55zm6 0h.01v.01H16V55zm6 0h.01v.01H22V55zm6 0h.01v.01H28V55zm6 0h.01v.01H34V55zm6 0h.01v.01H40V55zm6 0h.01v.01H46V55zm6 0h.01v.01H52V55zm6 0h.01v.01H58V55zm0-6h.01v.01H58V49zm0-6h.01v.01H58V43zm0-6h.01v.01H58V37zm0-6h.01v.01H58V31zm0-6h.01v.01H58V25zm0-6h.01v.01H58V19zm0-6h.01v.01H58V13zm0-6h.01v.01H58V7z"%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-            background-size: 60px 60px;
-        }
+        .particle-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.8;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%230f141f" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 0v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm10-21h.01v.01H46V13zm-6 0h.01v.01H40V13zm6-6h.01v.01H46V7zm-6 0h.01v.01H40V7zm-6 0h.01v.01H34V7zm-6 0h.01v.01H28V7zm-6 0h.01v.01H22V7zm-6 0h.01v.01H16V7zm-6 0h.01v.01H10V7zm-6 0h.01v.01H4V7zm0 6h.01v.01H4V13zm0 6h.01v.01H4V19zm0 6h.01v.01H4V25zm0 6h.01v.01H4V31zm0 6h.01v.01H4V37zm0 6h.01v.01H4V43zm0 6h.01v.01H4V49zm0 6h.01v.01H4V55zm6 0h.01v.01H10V55zm6 0h.01v.01H16V55zm6 0h.01v.01H22V55zm6 0h.01v.01H28V55zm6 0h.01v.01H34V55zm6 0h.01v.01H40V55zm6 0h.01v.01H46V55zm6 0h.01v.01H52V55zm6 0h.01v.01H58V55zm0-6h.01v.01H58V49zm0-6h.01v.01H58V43zm0-6h.01v.01H58V37zm0-6h.01v.01H58V31zm0-6h.01v.01H58V25zm0-6h.01v.01H58V19zm0-6h.01v.01H58V13zm0-6h.01v.01H58V7z"%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            background-size: 60px 60px;
+        }
 
-        .scanline-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0px,
-                rgba(0, 0, 0, 0.2) 1px,
-                transparent 2px
-            );
-            pointer-events: none;
-        }
+        .scanline-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                rgba(0, 0, 0, 0.2) 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+        }
 
-        /* --- FOCAL TEXT & CTA STYLES --- */
-        .text-gradient-main {
-            background: linear-gradient(45deg, #00FFFF, #8B5CF6, #FF00FF);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient-flow 5s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px rgba(0,255,255,0.4)); /* Adjusted filter */
-            text-shadow: 0 0 8px #00FFFF, 0 0 15px #8B5CF6, 0 0 20px #FF00FF; /* Added text-shadow for clear glow */
-        }
+        /* --- FOCAL TEXT & CTA STYLES --- */
+        .text-gradient-main {
+            background: linear-gradient(45deg, #00FFFF, #8B5CF6, #FF00FF);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(0,255,255,0.4)); /* Adjusted filter */
+            text-shadow: 0 0 8px #00FFFF, 0 0 15px #8B5CF6, 0 0 20px #FF00FF; /* Added text-shadow for clear glow */
+        }
 
-        @keyframes gradient-flow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-        .cta-btn-main {
-            position: relative;
-            z-index: 3;
-            background: linear-gradient(90deg, #8B5CF6, #00FFFF);
-            color: #030712;
-            font-weight: bold;
-            padding: 1rem 2.5rem;
-            border-radius: 9999px;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-            transform: skew(-10deg);
-        }
+        .cta-btn-main {
+            position: relative;
+            z-index: 3;
+            background: linear-gradient(90deg, #8B5CF6, #00FFFF);
+            color: #030712;
+            font-weight: bold;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+            transform: skew(-10deg);
+        }
 
-        .cta-btn-main:hover {
-            transform: scale(1.05) skew(-10deg);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(139, 92, 246, 0.6);
-        }
+        .cta-btn-main:hover {
+            transform: scale(1.05) skew(-10deg);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(139, 92, 246, 0.6);
+        }
 
-        .cta-btn-main span {
-            display: inline-block;
-            transform: skew(10deg);
-        }
-          
-        /* --- OTHER STYLES --- */
-        .glassmorphism {
-            background-color: rgba(30, 41, 59, 0.2);
-            backdrop-filter: blur(25px) brightness(1.2);
-            -webkit-backdrop-filter: blur(25px) brightness(1.2);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 255, 255, 0.1);
-            transition: all 0.4s ease;
-        }
-          
-        .glassmorphism:hover {
-            border-color: rgba(0, 255, 255, 0.6);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 255, 0.4);
-            transform: translateY(-2px);
-        }
-          
-        .accent-text {
-            color: #00FFFF;
-            text-shadow: 0 0 8px #00FFFF, 0 0 15px #00FFFF;
-        }
-          
-        .btn-dynamic {
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        .btn-dynamic::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(0, 255, 255, 0.4), rgba(139, 92, 246, 0.4));
-            transition: transform 0.4s ease-out;
-            z-index: -1;
-        }
-        .btn-dynamic:hover::before {
-            transform: translateX(100%);
-        }
-        .btn-dynamic:active {
-            transform: scale(0.98);
-        }
+        .cta-btn-main span {
+            display: inline-block;
+            transform: skew(10deg);
+        }
+        
+        /* --- OTHER STYLES --- */
+        .glassmorphism {
+            background-color: rgba(30, 41, 59, 0.2);
+            backdrop-filter: blur(25px) brightness(1.2);
+            -webkit-backdrop-filter: blur(25px) brightness(1.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .glassmorphism:hover {
+            border-color: rgba(0, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .accent-text {
+            color: #00FFFF;
+            text-shadow: 0 0 8px #00FFFF, 0 0 15px #00FFFF;
+        }
+        
+        .btn-dynamic {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .btn-dynamic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 255, 255, 0.4), rgba(139, 92, 246, 0.4));
+            transition: transform 0.4s ease-out;
+            z-index: -1;
+        }
+        .btn-dynamic:hover::before {
+            transform: translateX(100%);
+        }
+        .btn-dynamic:active {
+            transform: scale(0.98);
+        }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0e121a; }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #00FFFF, #8B5CF6);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #00FFFF, #8B5CF6, #00FFFF); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0e121a; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #00FFFF, #8B5CF6);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #00FFFF, #8B5CF6, #00FFFF); }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-          
-        @keyframes slideInFromTop { from { transform: translateY(-100%); } to { transform: translateY(0); } }
-        @keyframes slideOutToTop { from { transform: translateY(0); } to { transform: translateY(-100%); } }
-        .slide-in-top { animation: slideInFromTop 0.5s ease-out forwards; }
-        .slide-out-top { animation: slideOutToTop 0.5s ease-in forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        @keyframes slideInFromTop { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        @keyframes slideOutToTop { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+        .slide-in-top { animation: slideInFromTop 0.5s ease-out forwards; }
+        .slide-out-top { animation: slideOutToTop 0.5s ease-in forwards; }
 
-    </style>
+        /* New & Improved Styles */
+        .nav-link-underline {
+            position: relative;
+            transition: color 0.3s ease;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .nav-link-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00FFFF;
+            transition: width 0.3s ease;
+            opacity: 0;
+        }
+        .nav-link-underline:hover::after {
+            width: 100%;
+            opacity: 1;
+        }
+
+        .card-glow-on-hover {
+            transition: box-shadow 0.4s ease, transform 0.4s ease;
+        }
+        .card-glow-on-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0,255,255,0.4), 0 0 40px rgba(139,92,246,0.3);
+            border-color: rgba(0,255,255,0.6);
+        }
+
+        .cta-pulse-glow {
+            animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(139, 92, 246, 0.6); }
+        }
+
+    </style>
 </head>
 <body class="flex flex-col min-h-screen">
-      
-    <div class="animated-hero fixed inset-0 z-0">
-        <div id="particle-canvas" class="particle-bg"></div>
-        <div class="scanline-effect"></div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        particlesJS('particle-canvas', {
-            "particles": {
-                "number": {
-                    "value": 150,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": ["#00FFFF", "#8B5CF6", "#FF00FF"]
-                },
-                "shape": {
-                    "type": "circle"
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 2,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#1F2937",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 1.5,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 400,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 0.8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-            "retina_detect": true
-        });
-    </script>
-    <header class="glassmorphism bg-opacity-20 text-white px-4 py-3 md:px-10 md:py-4 flex items-center justify-between z-50 sticky top-0 border-b border-gray-700">
-        <div class="flex items-center space-x-2 md:space-x-4">
-            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-10 w-10 md:h-12 md:w-12 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] animate-pulse">
-            <div>
-                <h1 class="text-2xl md:text-3xl font-bold font-['IBM_Plex_Mono'] tracking-wide">VECTORPHILE</h1>
-                <p class="text-xs md:text-sm font-['IBM_Plex_Mono'] text-gray-400 mt-0.5">
-                    // Open Source AI & LLM Research
-                </p>
-            </div>
-        </div>
-          
-        <nav class="hidden md:flex ml-auto items-center space-x-6">
-            <a href="#about" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
-                <span class="z-10">About</span>
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
-            </a>
-            <a href="#focus" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
-                <span class="z-10">Focus</span>
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
-            </a>
-            <a href="#community" class="text-white hover:text-accent-text transition duration-200 font-medium relative group">
-                <span class="z-10">Community</span>
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-text transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
-            </a>
-            <a href="https://github.com/vectorphile" target="_blank" class="glassmorphism border border-gray-700 hover:border-[#00FFFF] text-white px-4 py-2 rounded-lg text-sm transition duration-300 btn-dynamic">
-                <img src="https://img.icons8.com/ios-filled/30/ffffff/github.png" alt="GitHub" class="inline-block mr-2 w-4 h-4">
-                <span>GitHub →</span>
-            </a>
-        </nav>
-          
-        <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-            <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-        </button>
-    </header>
+      
+    <div class="animated-hero fixed inset-0 z-0">
+        <div id="particle-canvas" class="particle-bg"></div>
+        <div class="scanline-effect"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particle-canvas', {
+            "particles": {
+                "number": {
+                    "value": 150,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": ["#00FFFF", "#8B5CF6", "#FF00FF"]
+                },
+                "shape": {
+                    "type": "circle"
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#1F2937",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 0.8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#030712] bg-opacity-95 z-40 flex-col items-center justify-center space-y-8 md:hidden hidden">
-        <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
-            <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-        <nav class="flex flex-col items-center space-y-8 text-3xl font-bold">
-            <a href="#about" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">About</a>
-            <a href="#focus" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">Focus Areas</a>
-            <a href="#community" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">Community</a>
-        </nav>
-    </div>
+    <header class="glassmorphism bg-opacity-20 text-white px-4 py-3 md:px-10 md:py-4 flex items-center justify-between z-50 sticky top-0 border-b border-gray-700">
+        <div class="flex items-center space-x-2 md:space-x-4">
+            <img src="BG Free Logo.png" alt="Vectorphile Logo" class="h-10 w-10 md:h-12 md:w-12 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] animate-pulse">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold font-['IBM_Plex_Mono'] tracking-wide">VECTORPHILE</h1>
+                <p class="text-xs md:text-sm font-['IBM_Plex_Mono'] text-gray-400 mt-0.5">// Open Source AI & LLM Research</p>
+            </div>
+        </div>
+        
+        <nav class="hidden md:flex ml-auto items-center space-x-6">
+            <a href="#about" class="nav-link-underline text-white hover:text-accent-text">About</a>
+            <a href="#focus" class="nav-link-underline text-white hover:text-accent-text">Focus</a>
+            <a href="#community" class="nav-link-underline text-white hover:text-accent-text">Community</a>
+            <a href="https://github.com/saadsalmanakram" target="_blank" class="glassmorphism border border-gray-700 hover:border-[#00FFFF] text-white px-4 py-2 rounded-lg text-sm transition duration-300 btn-dynamic">
+                <img src="https://img.icons8.com/ios-filled/30/ffffff/github.png" alt="GitHub" class="inline-block mr-2 w-4 h-4">
+                <span>GitHub →</span>
+            </a>
+        </nav>
+        
+        <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+            <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </header>
 
-    <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-10 max-w-7xl mx-auto">
-          
-        <section id="about" class="w-full text-center max-w-5xl py-20 md:py-32 flex flex-col items-center justify-center relative">
-            <div class="z-20 animate-fade-in-up delay-1">
-                <p class="text-sm font-['IBM_Plex_Mono'] text-gray-400 uppercase tracking-widest mb-4">Unlocking the Digital Frontier</p>
-                <h2 class="text-5xl md:text-7xl font-bold leading-tight text-gradient-main">
-                    Code the Future, Design the Impossible.
-                </h2>
-                <p class="text-gray-300 text-base md:text-lg leading-relaxed mt-8 max-w-2xl mx-auto">
-                    <strong class="font-bold text-accent-text">Vectorphile</strong> is not just a platform; it's a launchpad for <strong class="text-[#00FFFF]">digital pioneers</strong> and <strong class="text-[#00FFFF]">architects of tomorrow</strong>. We are a collective of innovators creating open-source solutions that are as elegant as they are powerful. Join us as we build the next-gen infrastructure for a more connected and intelligent world.
-                </p>
-                <a href="https://github.com/saadsalmanakram" target="_blank" class="mt-12 inline-flex items-center space-x-2 cta-btn-main">
-                    <span>Open Source Projects</span>
-                </a>
-            </div>
-        </section>
-          
-        <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#030712] bg-opacity-95 z-40 flex-col items-center justify-center space-y-8 md:hidden hidden">
+        <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
+            <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <nav class="flex flex-col items-center space-y-8 text-3xl font-bold">
+            <a href="#about" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">About</a>
+            <a href="#focus" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">Focus Areas</a>
+            <a href="#community" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">Community</a>
+            <a href="https://github.com/saadsalmanakram" target="_blank" class="mobile-nav-link text-white hover:text-accent-text transition duration-300">
+                GitHub
+            </a>
+        </nav>
+    </div>
 
-        <section id="focus" class="w-full text-center py-16 md:py-24 animate-fade-in-up delay-2">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">Our Core Focus Areas</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Open-Source LLMs</h3>
-                    <p class="text-gray-400 text-sm md:text-base">Developing and fine-tuning open-source models that are accessible and transparent to the global research community.</p>
-                </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI Tooling & Frameworks</h3>
-                    <p class="text-gray-400 text-sm md:text-base">Building the next generation of robust and intuitive tools to streamline AI development and deployment.</p>
-                </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Vector Databases</h3>
-                    <p class="text-gray-400 text-sm md:text-base">Advancing high-performance vector databases crucial for efficient retrieval-augmented generation (RAG) systems.</p>
-                </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI-Powered Agents</h3>
-                    <p class="text-gray-400 text-sm md:text-base">Designing autonomous agents that can solve complex problems and automate workflows with precision.</p>
-                </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Data & Ethics</h3>
-                    <p class="text-gray-400 text-sm md:text-base">Committed to ethical AI practices, promoting transparency, fairness, and accountability in all our work.</p>
-                </div>
-                <div class="glassmorphism p-6 md:p-8 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:scale-[1.02] transition-transform duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Collaboration</h3>
-                    <p class="text-gray-400 text-sm md:text-base">Fostering a vibrant community through mentorship, shared knowledge, and collaborative problem-solving.</p>
-                </div>
-            </div>
-        </section>
+    <main class="flex-1 px-4 md:px-12 lg:px-16 flex flex-col items-center relative z-10 max-w-7xl mx-auto">
+        
+        <section id="about" class="w-full text-center max-w-5xl py-20 md:py-32 flex flex-col items-center justify-center relative">
+            <div class="z-20 animate-fade-in-up delay-1">
+                <p class="text-sm font-['IBM_Plex_Mono'] text-gray-400 uppercase tracking-widest mb-4">Unlocking the Digital Frontier</p>
+                <h2 class="text-5xl md:text-7xl font-bold leading-tight text-gradient-main">
+                    Code the Future, <span class="block">Design the Impossible.</span>
+                </h2>
+                <p class="text-gray-300 text-base md:text-lg leading-relaxed mt-8 max-w-2xl mx-auto">
+                    <strong class="font-bold text-accent-text">Vectorphile</strong> is not just a platform; it's a launchpad for <strong class="text-[#00FFFF]">digital pioneers</strong> and <strong class="text-[#00FFFF]">architects of tomorrow</strong>. We are a collective of innovators creating open-source solutions that are as elegant as they are powerful. Join us as we build the next-gen infrastructure for a more connected and intelligent world.
+                </p>
+                <a href="https://github.com/saadsalmanakram" target="_blank" class="mt-12 inline-flex items-center space-x-2 cta-btn-main cta-pulse-glow">
+                    <span>Open Source Projects</span>
+                </a>
+            </div>
+        </section>
+        
+        <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
-        <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
+        <section id="focus" class="w-full text-center py-16 md:py-24 animate-fade-in-up delay-2">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">Our Core Focus Areas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+                <div class="glassmorphism p-6 md:p-8 rounded-xl card-glow-on-hover">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Open-Source LLMs</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Developing and fine-tuning open-source models that are accessible and transparent to the global research community.</p>
+                </div>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl card-glow-on-hover">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI Tooling & Frameworks</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Building the next generation of robust and intuitive tools to streamline AI development and deployment.</p>
+                </div>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl card-glow-on-hover">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Vector Databases</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Advancing high-performance vector databases crucial for efficient retrieval-augmented generation (RAG) systems.</p>
+                </div>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl card-glow-on-hover">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">AI-Powered Agents</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Designing autonomous agents that can solve complex problems and automate workflows with precision.</p>
+                </div>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl card-glow-on-hover">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Data & Ethics</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Committed to ethical AI practices, promoting transparency, fairness, and accountability in all our work.</p>
+                </div>
+                <div class="glassmorphism p-6 md:p-8 rounded-xl card-glow-on-hover">
+                    <h3 class="text-xl md:text-2xl font-semibold text-accent-text mb-2">Collaboration</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Fostering a vibrant community through mentorship, shared knowledge, and collaborative problem-solving.</p>
+                </div>
+            </div>
+        </section>
 
-        <section id="community" class="text-center max-w-4xl py-16 md:py-24 animate-fade-in-up delay-3">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Join Our Community</h2>
-            <p class="text-gray-300 text-base md:text-lg mb-8">
-                Vectorphile thrives on collaboration. We invite developers, researchers, and AI enthusiasts to contribute to our projects and help shape the future of open-source AI.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="https://github.com/vectorphile" target="_blank" class="glassmorphism btn-dynamic text-white px-6 py-3 rounded-lg transition duration-300">
-                    GitHub →
-                </a>
-                <a href="https://huggingface.co/Vectorphile" target="_blank" class="glassmorphism btn-dynamic text-white px-6 py-3 rounded-lg transition duration-300">
-                    Hugging Face →
-                </a>
-            </div>
-        </section>
+        <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
-        <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
+        <section id="community" class="text-center max-w-4xl py-16 md:py-24 animate-fade-in-up delay-3">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Join Our Community</h2>
+            <p class="text-gray-300 text-base md:text-lg mb-8">
+                Vectorphile thrives on collaboration. We invite developers, researchers, and AI enthusiasts to contribute to our projects and help shape the future of open-source AI.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="https://github.com/saadsalmanakram" target="_blank" class="glassmorphism btn-dynamic text-white px-6 py-3 rounded-lg transition duration-300">
+                    GitHub →
+                </a>
+                <a href="https://huggingface.co/Vectorphile" target="_blank" class="glassmorphism btn-dynamic text-white px-6 py-3 rounded-lg transition duration-300">
+                    Hugging Face →
+                </a>
+            </div>
+        </section>
 
-    </main>
+        <div class="w-full h-px bg-gray-700 opacity-20 my-16 md:my-24"></div>
 
-    <footer class="glassmorphism text-gray-400 text-center py-6 border-t border-gray-700 px-4 mt-auto">
-        <p class="text-sm">© <span id="year"></span> Vectorphile. All rights reserved.</p>
-        <div class="mt-3 space-x-4 text-xs md:text-sm flex flex-wrap justify-center">
-            <a href="https://github.com/saadsalmanakram" class="text-[#00FFFF] hover:opacity-80 transition duration-200">GitHub</a>
-            <a href="https://huggingface.co/Vectorphile" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Hugging Face</a>
-            <a href="#" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Privacy Policy</a>
-            <a href="#" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Terms of Service</a>
-        </div>
-    </footer>
+    </main>
 
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
+    <footer class="glassmorphism text-gray-400 text-center py-6 border-t border-gray-700 px-4 mt-auto">
+        <p class="text-sm">© <span id="year"></span> Vectorphile. All rights reserved.</p>
+        <div class="mt-3 space-x-4 text-xs md:text-sm flex flex-wrap justify-center">
+            <a href="https://github.com/saadsalmanakram" class="text-[#00FFFF] hover:opacity-80 transition duration-200">GitHub</a>
+            <a href="https://huggingface.co/Vectorphile" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Hugging Face</a>
+            <a href="#" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Privacy Policy</a>
+            <a href="#" class="text-[#00FFFF] hover:opacity-80 transition duration-200">Terms of Service</a>
+        </div>
+    </footer>
 
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
-        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenuOverlay.classList.remove('hidden', 'slide-out-top');
-            mobileMenuOverlay.classList.add('slide-in-top');
-        });
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
-        closeMobileMenuButton.addEventListener('click', () => {
-            mobileMenuOverlay.classList.remove('slide-in-top');
-            mobileMenuOverlay.classList.add('slide-out-top');
-            setTimeout(() => {
-                mobileMenuOverlay.classList.add('hidden');
-            }, 500);
-        });
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenuOverlay.classList.remove('hidden', 'slide-out-top');
+            mobileMenuOverlay.classList.add('slide-in-top');
+        });
 
-        document.querySelectorAll('nav a, .mobile-nav-link').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href && href.startsWith('#')) {
-                    e.preventDefault();
-                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-                    if (!mobileMenuOverlay.classList.contains('hidden')) {
-                        mobileMenuOverlay.classList.remove('slide-in-top');
-                        mobileMenuOverlay.classList.add('slide-out-top');
-                        setTimeout(() => {
-                            mobileMenuOverlay.classList.add('hidden');
-                        }, 500);
-                    }
-                }
-            });
-        });
+        closeMobileMenuButton.addEventListener('click', () => {
+            mobileMenuOverlay.classList.remove('slide-in-top');
+            mobileMenuOverlay.classList.add('slide-out-top');
+            setTimeout(() => {
+                mobileMenuOverlay.classList.add('hidden');
+            }, 500);
+        });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
+        document.querySelectorAll('nav a, .mobile-nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                    if (!mobileMenuOverlay.classList.contains('hidden')) {
+                        mobileMenuOverlay.classList.remove('slide-in-top');
+                        mobileMenuOverlay.classList.add('slide-out-top');
+                        setTimeout(() => {
+                            mobileMenuOverlay.classList.add('hidden');
+                        }, 500);
+                    }
+                }
+            });
+        });
 
-        document.querySelectorAll('.animate-fade-in-up').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
