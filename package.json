@@ -4,8 +4,8 @@
   "description": "A static site with Cloudflare Pages Functions",
   "main": "index.js",
   "scripts": {
-    "build": "echo 'No build steps needed for static assets, but running npm install is necessary for middleware.'",
-    "deploy": "npx wrangler pages deploy"
+    "build": "echo 'No build steps needed, dependencies installed by Bun.'",
+    "deploy": "npx wrangler pages deploy . --project-name=vectorphile-site"
   },
   "keywords": [
     "cloudflare",
@@ -15,11 +15,10 @@
   "author": "saadsalmanakram",
   "license": "ISC",
   "dependencies": {
-    // Add any necessary Node.js packages for your middleware here
-    // e.g., "date-fns": "^2.30.0"
+    // Add any necessary runtime dependencies for your functions here
   },
   "devDependencies": {
     "wrangler": "^3.0.0" 
-    // Wrangler is good to include, even if Cloudflare runs the build
+    // It's good practice to keep wrangler listed here
   }
 }
