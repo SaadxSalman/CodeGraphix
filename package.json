@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "echo 'No build steps needed, dependencies installed by Bun.'",
-    "deploy": "npx wrangler pages deploy . --project-name=vectorphile-site"
+    "deploy": "echo 'Deployment handled automatically by Cloudflare Pages Git Integration.'"
   },
   "keywords": [
     "cloudflare",
@@ -15,10 +15,9 @@
   "author": "saadsalmanakram",
   "license": "ISC",
   "dependencies": {
-    // Add any necessary runtime dependencies for your functions here
+    
   },
   "devDependencies": {
     "wrangler": "^3.0.0" 
-    // It's good practice to keep wrangler listed here
   }
 }
