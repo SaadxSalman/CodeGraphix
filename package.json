@@ -1,6 +1,25 @@
 {
-  "private": true,
+  "name": "vectorphile-site",
+  "version": "1.0.0",
+  "description": "A static site with Cloudflare Pages Functions",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'No build steps needed for static assets, but running npm install is necessary for middleware.'",
+    "deploy": "npx wrangler pages deploy"
+  },
+  "keywords": [
+    "cloudflare",
+    "pages",
+    "middleware"
+  ],
+  "author": "saadsalmanakram",
+  "license": "ISC",
   "dependencies": {
-    "@vercel/edge": "^0.1.2"
+    // Add any necessary Node.js packages for your middleware here
+    // e.g., "date-fns": "^2.30.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0" 
+    // Wrangler is good to include, even if Cloudflare runs the build
   }
 }
