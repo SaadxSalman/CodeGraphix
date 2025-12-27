@@ -1,7 +1,3 @@
-This guide provides the complete documentation and architecture for your **Ollama-powered** desktop widget. By using **Deno 2.0** and **Tauri 2.0**, you get a secure, high-performance app that runs locally and installs via a standard Windows `.exe`.
-
----
-
 # 🧩 SmartWidget AI (Ollama Edition)
 
 A "super-intelligent," local-first desktop widget. Built for **saadsalmanakram**, this project uses **Ollama** to run LLMs entirely on your machine—no API keys required. It features **Generative UI** and a professional **Windows Installer (.exe)**.
