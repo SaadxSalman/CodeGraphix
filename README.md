@@ -77,3 +77,45 @@ deno task tauri build --bundles nsis
 
 ---
 
+To keep your **Deno 2.0 + Tauri 2.0** project clean and professional, you should follow a structure that separates the Rust "Core" from the TypeScript "Frontend" and "Deno" logic.
+
+Here is the finalized directory map for **SmartWidget AI**:
+
+```text
+smart-widget-ai/
+├── .github/                      # CI/CD workflows
+│   └── workflows/
+│       └── release.yml           # Auto-build .exe on push
+├── src/                          # FRONTEND (React + TS)
+│   ├── assets/                   # Images and styles
+│   │   └── main.css              # Tailwind directives
+│   ├── components/               # Reusable UI parts
+│   │   ├── WidgetFrame.tsx       # Glassmorphism wrapper
+│   │   ├── TaskSummary.tsx       # Component for AI summary
+│   │   └── Controls.tsx          # Lock/Unlock/Drag buttons
+│   ├── hooks/                    # Custom React hooks
+│   │   └── useOllama.ts          # Logic for calling local LLM
+│   ├── services/                 # Logic layer
+│   │   ├── agent.ts              # System prompts & Agent logic
+│   │   └── db.ts                 # SQLite queries via Tauri plugin
+│   ├── App.tsx                   # Main Entry UI
+│   └── main.tsx                  # React DOM Render
+├── src-tauri/                    # BACKEND (Rust Core)
+│   ├── icons/                    # App icons (32x32, 128x128, etc.)
+│   ├── src/
+│   │   ├── commands/             # Modular Rust commands
+│   │   │   └── window_mgmt.rs    # Click-through & transparency logic
+│   │   ├── main.rs               # Entry point & Plugin registration
+│   │   └── lib.rs                # Tauri 2.0 library logic
+│   ├── capabilities/             # Tauri 2.0 Security Permissions
+│   │   └── default.json          # Defines what frontend can access
+│   ├── tauri.conf.json           # App config (Window size, NSIS, etc.)
+│   └── Cargo.toml                # Rust dependencies (sql, window-vibrancy)
+├── .gitignore
+├── deno.json                     # Deno 2.0 config and tasks
+├── deno.lock                     # Deno lockfile
+├── tailwind.config.js            # UI Styling config
+├── tsconfig.json                 # TypeScript config
+└── README.md                     # Project documentation
+
+```
