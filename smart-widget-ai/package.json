@@ -10,6 +10,7 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@tauri-apps/plugin-sql": "~2.3.1",
     "autoprefixer": "^10.4.23",
     "postcss": "^8.5.6",
     "react": "^19.1.0",
