@@ -72,9 +72,6 @@ Create a production-ready installer for distribution:
 deno task tauri build --bundles nsis
 
 ```
-
-> **Output:** `src-tauri/target/release/bundle/nsis/SmartWidget_x64-setup.exe`
-
 ---
 
 To keep your **Deno 2.0 + Tauri 2.0** project clean and professional, you should follow a structure that separates the Rust "Core" from the TypeScript "Frontend" and "Deno" logic.
