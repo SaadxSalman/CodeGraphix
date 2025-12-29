@@ -1,6 +1,6 @@
 # 🧩 SmartWidget AI (Ollama Edition)
 
-A "super-intelligent," local-first desktop widget. This project uses **Ollama** to run LLMs entirely on your machine—no API keys required. It features **Generative UI** and a professional **Windows Installer (.exe)**..
+A "super-intelligent," local-first desktop widget. This project uses **Ollama** to run LLMs entirely on your machine—no API keys required. It features **Generative UI** and a professional **Windows Installer (.exe)**.
 
 ---
 
