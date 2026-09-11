@@ -48,3 +48,39 @@ h1 { font-size: clamp(32px, 4vw, 50px); line-height: .98; letter-spacing: -.06em
 .result-kind { color: var(--coral); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; }.result-symbol { margin: 6px 0 4px; font-size: 14px; font-weight: 600; }.result-file { color: var(--muted); font-size: 11px; }.result-snippet { color: #69766e; font-size: 11px; line-height: 1.45; margin: 12px 0 0; white-space: pre-line; }.score { color: var(--teal); background: #e3f4e5; border-radius: 4px; padding: 5px 7px; font-size: 11px; height: fit-content; }.graph-panel { background: #e8f1e7; border: 1px solid #d0e2d2; border-radius: 7px; padding: 18px; min-height: 250px; }.graph-panel h3 { margin: 0; font-size: 14px; }.graph-panel p { color: var(--muted); font-size: 11px; line-height: 1.5; }.graph-visual { position: relative; height: 140px; margin: 15px 0; }.graph-line { position: absolute; height: 1px; background: #9bc4aa; transform-origin: left; }.line-one { width: 105px; left: 60px; top: 59px; transform: rotate(-24deg); }.line-two { width: 100px; left: 94px; top: 74px; transform: rotate(21deg); }.line-three { width: 96px; left: 125px; top: 62px; transform: rotate(5deg); }.graph-node { position: absolute; background: white; border: 2px solid var(--teal); width: 55px; height: 55px; border-radius: 50%; display: grid; place-items: center; text-align: center; padding: 5px; font-size: 9px; line-height: 1.1; }.node-main { left: 105px; top: 43px; background: var(--ink); border-color: var(--ink); color: white; width: 66px; height: 66px; }.node-a { left: 10px; top: 10px; }.node-b { left: 30px; top: 88px; }.node-c { right: 4px; top: 47px; border-color: var(--coral); }.context { border-top: 1px solid #c8dccc; padding-top: 12px; }.context-label { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }.context-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }.context-tag { background: white; border-radius: 3px; padding: 5px 6px; color: #476c58; font-size: 10px; }
 @media (max-width: 900px) { .shell { grid-template-columns: 1fr; }.sidebar { display: none; }.workspace { padding: 24px 20px 42px; }.results-layout { grid-template-columns: 1fr; }.intro { display: block; }.health { margin-top: 20px; }.metric-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .topbar { margin-bottom: 34px; }.top-actions .primary { display: none; }.metric-grid { gap: 18px 10px; }.quick-row { overflow-x: auto; }.search-box .primary { min-width: 75px; padding: 9px; } }
+
+/* ===== CodeGraphix interactive workspace extensions ===== */
+.tenant-switch { display: flex; align-items: center; gap: 4px; color: #dce6df; font-size: 12px; flex: 1; min-width: 0; }
+.tenant-switch select { background: #18221d; color: #dce6df; border: 1px solid #324138; border-radius: 6px; padding: 4px 6px; width: 100%; font-size: 12px; outline: none; appearance: auto; }
+.tenant-switch svg { flex-shrink: 0; }
+.toast { position: sticky; top: 0; z-index: 20; background: #dff3e3; border: 1px solid #b7dcc0; color: #17523f; border-radius: 8px; padding: 11px 15px; margin: 0 0 14px; font-size: 12px; box-shadow: 0 5px 14px rgba(23, 82, 63, .12); }
+.toast-error { background: #fdeaea; border-color: #f2c4bb; color: #8a2f22; }
+.answer-panel { background: white; border: 1px solid var(--line); border-radius: 9px; margin: 0 0 30px; padding: 16px 18px; box-shadow: 0 7px 22px rgba(34, 60, 42, .06); }
+.answer-head { display: flex; justify-content: space-between; align-items: center; }
+.answer-title { font-size: 12px; font-weight: 700; letter-spacing: .02em; color: var(--teal); }
+.answer-mode { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+.answer-body { display: grid; gap: 12px; }
+.answer-text { font-size: 13px; line-height: 1.55; color: var(--ink); margin: 8px 0 0; }
+.answer-empty { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+.citations { display: flex; flex-wrap: wrap; gap: 6px; }
+.citation { background: #eef4ea; border: 1px solid #cfe0d2; color: #3d6a54; border-radius: 4px; padding: 4px 8px; font-size: 10px; font-family: 'DM Mono', monospace; cursor: pointer; transition: border-color .15s; }
+.citation:hover { border-color: var(--teal); }
+.result-head { display: flex; justify-content: space-between; gap: 10px; }
+.result-meta { color: var(--muted); font-size: 10px; }
+.result-doc { color: #3d6a54; font-style: italic; font-size: 11px; margin: 4px 0 8px; }
+.result-relations { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.relation-label { color: var(--muted); font-size: 10px; display: flex; align-items: center; gap: 4px; text-transform: uppercase; letter-spacing: .05em; }
+.relation-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.relation-tag { background: #e8f1e7; border: 1px solid #d0e2d2; color: #476c58; border-radius: 3px; padding: 3px 6px; font-size: 10px; font-family: 'DM Mono', monospace; }
+.empty-state { display: grid; place-items: center; gap: 12px; padding: 42px 0; color: var(--muted); text-align: center; }
+.empty-state p { font-size: 12px; max-width: 420px; margin: 0; }
+.graph-node.node-left { left: auto; border-color: #9db8a5; background: #f7faf6; color: #42604f; }
+.graph-node.node-right { left: auto; border-color: var(--coral); background: #fdf2ef; color: #8a4636; }
+.edge-list { border-top: 1px solid #c8dccc; padding-top: 12px; margin-top: 16px; }
+.edge-list ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; }
+.edge-list li { display: flex; align-items: center; gap: 6px; font-size: 10px; font-family: 'DM Mono', monospace; color: #476c58; }
+.edge-src { color: #0d766d; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 72px; }
+.edge-rel { color: var(--coral); font-size: 9px; background: #fdeee9; border-radius: 3px; padding: 1px 4px; flex-shrink: 0; }
+.edge-tgt { color: #8a4636; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 72px; }
+.graph-visual .graph-node { z-index: 2; }
+@media (max-width: 900px) { .answer-panel { margin-bottom: 22px; }.result-head { flex-wrap: wrap; } }
