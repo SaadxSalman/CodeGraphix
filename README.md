@@ -232,5 +232,3 @@ CodeGraphix/
 ```
 
 ## License
-
-This project is an internal starter implementation. Add your organization's license and contribution policy before distributing it externally.
