@@ -8,7 +8,7 @@ A conventional code search pipeline often retrieves the file containing a keywor
 
 > **The repository ships fully functional.** The deterministic demo mode needs no model credentials and no running databases: `uvicorn` boots with two demo tenants already indexed, and the browser UI talks to it immediately. Docker Compose provides the production-shaped **Qdrant** and **Neo4j** services when you are ready to connect real indexing at scale.
 
----
+--
 
 ## Table of Contents
 
